@@ -8,5 +8,5 @@ struct EnemyData
 
 interface IEnemySpawner
 {
-    public void SpawnEnemy();
+    public void SpawnEnemy(EnemyData data);
 }
