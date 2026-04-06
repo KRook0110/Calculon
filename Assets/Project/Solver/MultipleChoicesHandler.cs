@@ -17,6 +17,26 @@ public class MultipleChoiceQuestion
 {
     public string questionText;
     public ChoiceData[] choices;
+
+    public static MultipleChoiceQuestion CreateQuestion(string text, string[] options, int correctIndex)
+    {
+        MultipleChoiceQuestion q = new MultipleChoiceQuestion
+        {
+            questionText = text,
+            choices = new ChoiceData[options.Length]
+        };
+
+        for (int i = 0; i < options.Length; i++)
+        {
+            q.choices[i] = new ChoiceData
+            {
+                choiceText = options[i],
+                isCorrect = (i == correctIndex)
+            };
+        }
+
+        return q;
+    }
 }
 
 public class MultipleChoicesHandler : MonoBehaviour
@@ -25,11 +45,16 @@ public class MultipleChoicesHandler : MonoBehaviour
     private TextMeshProUGUI questionTextObject;
     [SerializeField]
     private GameObject[] choiceObjects;
+    [Header("UI")]
+    [SerializeField]
+    private GameObject questionBlockerUI;
 
-    private List<MultipleChoiceQuestion> questions = new List<MultipleChoiceQuestion>();
+    private List<MultipleChoiceQuestion> _questions = new List<MultipleChoiceQuestion>();
     private List<TextMeshProUGUI> _choiceTexts = new List<TextMeshProUGUI>();
     private List<Button> _choiceButtons = new List<Button>();
     private int _currentQuestion = 0;
+
+
 
 
     /// Invoked when a user submits an answer.
@@ -41,7 +66,7 @@ public class MultipleChoicesHandler : MonoBehaviour
 
     void Start()
     {
-        for(int i =0 ;i < choiceObjects.Length;i++)
+        for (int i = 0; i < choiceObjects.Length; i++)
         {
             Button foundButton = choiceObjects[i].GetComponentInChildren<Button>();
             TextMeshProUGUI foundText = choiceObjects[i].GetComponentInChildren<TextMeshProUGUI>();
@@ -55,7 +80,7 @@ public class MultipleChoicesHandler : MonoBehaviour
     }
     public void AddQuestion(MultipleChoiceQuestion question)
     {
-        questions.Add(question);
+        _questions.Add(question);
         RefreshUI();
     }
 
@@ -71,7 +96,7 @@ public class MultipleChoicesHandler : MonoBehaviour
 
     private void NextQuestion()
     {
-        if(_currentQuestion >= questions.Count)
+        if (_currentQuestion >= _questions.Count)
         {
             OnFinish?.Invoke();
             return;
@@ -84,39 +109,53 @@ public class MultipleChoicesHandler : MonoBehaviour
 
     void RefreshUI()
     {
+        RefreshQuestionBlocker();
         RefreshQuestion();
         RefreshChoices();
     }
 
+    void RefreshQuestionBlocker()
+    {
+        bool shouldBlock = _currentQuestion >= _questions.Count;
+        questionBlockerUI.SetActive(shouldBlock);
+    }
+
     void RefreshQuestion()
     {
-        if(_currentQuestion >= questions.Count)
+        if (_currentQuestion >= _questions.Count)
         {
-            Debug.Log("MultipleChoicesHandler : there are no questions left");
+            Debug.Log("MultipleChoicesHandler RefreshQuestion(): there are no questions left");
             return;
         }
-        questionTextObject.text = questions[_currentQuestion].questionText;
+        questionTextObject.text = _questions[_currentQuestion].questionText;
     }
 
     void RefreshChoices()
     {
-        if(_currentQuestion >= questions.Count)
+        foreach(var button in _choiceButtons)
         {
-            Debug.Log("MultipleChoicesHandler : there are no questions left");
+            button.onClick.RemoveAllListeners();
+        }
+
+        if (_currentQuestion >= _questions.Count)
+        {
+            Debug.Log("MultipleChoicesHandler RefreshChoices(): there are no questions left");
             return;
         }
-        Assert.IsTrue(questions[_currentQuestion].choices.Length <= choiceObjects.Length, "ChoiceObjects are not enough. Need more");
-        for(int i =0;i < questions[_currentQuestion].choices.Length;i++)
+
+        Assert.IsTrue(_questions[_currentQuestion].choices.Length <= choiceObjects.Length, "ChoiceObjects are not enough. Need more");
+
+        for (int i = 0; i < _questions[_currentQuestion].choices.Length && i < choiceObjects.Length; i++)
         {
-            bool isCorrect = questions[_currentQuestion].choices[i].isCorrect;
-            string choiceText = questions[_currentQuestion].choices[i].choiceText;
+            bool isCorrect = _questions[_currentQuestion].choices[i].isCorrect;
+            string choiceText = _questions[_currentQuestion].choices[i].choiceText;
             _choiceTexts[i].text = choiceText;
             _choiceButtons[i].onClick.AddListener(() => Answer(isCorrect));
+            choiceObjects[i].SetActive(true);
         }
-    }
-
-    void CleanChoices()
-    {
-
+        for(int i = _questions[_currentQuestion].choices.Length;i < choiceObjects.Length;i++)
+        {
+            choiceObjects[i].SetActive(false);
+        }
     }
 }
