@@ -1,12 +1,12 @@
 using System;
 using UnityEngine;
 
-[Serializable]
-public struct EnemyData
-{
-    public GameObject go;
-    public MultipleChoiceQuestion question;
-}
+// [Serializable]
+// public struct EnemyData
+// {
+//     public GameObject go;
+//     public MultipleChoiceQuestion question;
+// }
 
 public interface IEnemySpawner
 {
