@@ -48,8 +48,8 @@ public class RangedEnemyProjectile : MonoBehaviour, IProjectile
             OnHit?.Invoke(Target.gameObject);
 
             Debug.Log($"hit {Target.name} {dPos.sqrMagnitude}");
-            var handler = Target.GetComponentInChildren<IEnemyHandler>();
-            handler.Attack(_damage);
+            var handler = Target.GetComponentInChildren<IDamageable>();
+            handler.Damage(_damage);
 
             Destroy(gameObject);
             return;

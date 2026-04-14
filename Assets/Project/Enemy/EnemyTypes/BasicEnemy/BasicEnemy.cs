@@ -23,9 +23,9 @@ public class BasicEnemy : Enemy
         transform.position += totalDisplacement;
     }
 
-    protected virtual void Attack(IEnemyHandler handler)
+    protected virtual void Attack(IDamageable handler)
     {
-        handler.Attack(_damage);
+        handler.Damage(_damage);
         Kill();
     }
 
@@ -33,10 +33,10 @@ public class BasicEnemy : Enemy
     {
         if (collidedObject.CompareTag(playerTag))
         {
-            var handler = collidedObject.GetComponentInChildren<IEnemyHandler>();
+            var handler = collidedObject.GetComponentInChildren<IDamageable>();
             if (handler == null)
             {
-                Debug.LogError($"{collidedObject.name} has no type of {typeof(IEnemyHandler).Name}");
+                Debug.LogError($"{collidedObject.name} has no type of {typeof(IDamageable).Name}");
                 return;
             }
             Attack(handler);

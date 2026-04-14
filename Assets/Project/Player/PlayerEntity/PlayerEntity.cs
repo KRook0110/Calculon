@@ -2,9 +2,8 @@ using System;
 using NUnit.Framework;
 using UnityEngine;
 
-public class PlayerEntity : MonoBehaviour, IEnemyHandler
+public class PlayerEntity : MonoBehaviour, IDamageable
 {
-
     [Serializable]
     public struct PlayerDamageInfo
     {
@@ -21,7 +20,7 @@ public class PlayerEntity : MonoBehaviour, IEnemyHandler
     public Action<PlayerDamageInfo> OnDamage;
     public Action OnDie;
 
-    public void Attack(int damage)
+    public void Damage(int damage)
     {
         damage = Mathf.Min(_currentHealth, damage);
 
@@ -37,6 +36,10 @@ public class PlayerEntity : MonoBehaviour, IEnemyHandler
         {
             OnDie?.Invoke();
         }
+    }
+    public void Attack(Enemy enemy)
+    {
+
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
