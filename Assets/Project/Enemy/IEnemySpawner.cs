@@ -4,7 +4,7 @@ using UnityEngine;
 [Serializable]
 public struct EnemyData
 {
-    public GameObject go;
+    public GameObject enemyPrefab;
     public MultipleChoiceQuestion question;
 }
 

@@ -10,6 +10,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         public int remainingHealth;
         public int damageTaken;
     }
+
     [SerializeField]
     private Transform projectileOrigin;
 

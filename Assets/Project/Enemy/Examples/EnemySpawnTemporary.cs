@@ -4,7 +4,6 @@ public class EnemySpawnTemporary : MonoBehaviour, IEnemySpawner
 {
     void IEnemySpawner.SpawnEnemy(EnemyData data)
     {
-        Debug.Log($"{data.question.questionText}");
     }
 
 
