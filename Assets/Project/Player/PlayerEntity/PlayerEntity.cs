@@ -1,5 +1,4 @@
 using System;
-using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerEntity : MonoBehaviour, IDamageable
@@ -11,6 +10,8 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         public int remainingHealth;
         public int damageTaken;
     }
+    [SerializeField]
+    private Transform projectileOrigin;
 
     [SerializeField]
     private int _maxHealth;
@@ -37,10 +38,19 @@ public class PlayerEntity : MonoBehaviour, IDamageable
             OnDie?.Invoke();
         }
     }
-    public void Attack(Enemy enemy)
+    public void Attack(Enemy enemy, GameObject projectilePrefab)
     {
+        var projectileGO = Instantiate(projectilePrefab, projectileOrigin.position, projectileOrigin.rotation);
+        var projectile = projectileGO.GetComponentInChildren<PlayerProjectile>();
+        if(projectile == null)
+        {
+            Debug.LogError($"PlayerPorjectile instance not found in {projectilePrefab.name}");
+            return;
+        }
+        projectile.target = enemy;
 
     }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -31,7 +31,7 @@ public class MultipleChoiceQuestion
             q.choices[i] = new ChoiceData
             {
                 choiceText = options[i],
-                isCorrect = (i == correctIndex)
+                isCorrect = i == correctIndex
             };
         }
 
