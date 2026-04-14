@@ -1,10 +1,8 @@
 using System;
-using NUnit.Framework;
 using UnityEngine;
 
-public class PlayerEntity : MonoBehaviour, IEnemyHandler
+public class PlayerEntity : MonoBehaviour, IDamageable
 {
-
     [Serializable]
     public struct PlayerDamageInfo
     {
@@ -14,6 +12,9 @@ public class PlayerEntity : MonoBehaviour, IEnemyHandler
     }
 
     [SerializeField]
+    private Transform projectileOrigin;
+
+    [SerializeField]
     private int _maxHealth;
 
     private int _currentHealth;
@@ -21,7 +22,7 @@ public class PlayerEntity : MonoBehaviour, IEnemyHandler
     public Action<PlayerDamageInfo> OnDamage;
     public Action OnDie;
 
-    public void Attack(int damage)
+    public void Damage(int damage)
     {
         damage = Mathf.Min(_currentHealth, damage);
 
@@ -38,6 +39,19 @@ public class PlayerEntity : MonoBehaviour, IEnemyHandler
             OnDie?.Invoke();
         }
     }
+    public void Attack(Enemy enemy, GameObject projectilePrefab)
+    {
+        var projectileGO = Instantiate(projectilePrefab, projectileOrigin.position, projectileOrigin.rotation);
+        var projectile = projectileGO.GetComponentInChildren<PlayerProjectile>();
+        if(projectile == null)
+        {
+            Debug.LogError($"PlayerPorjectile instance not found in {projectilePrefab.name}");
+            return;
+        }
+        projectile.target = enemy;
+
+    }
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public interface IEnemyHandler
+public interface IDamageable
 {
-    public void Attack(int damage);
+    public void Damage(int damage);
 }
 
 /**

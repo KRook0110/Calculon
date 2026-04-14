@@ -6,7 +6,7 @@ public class QuestionGeneratorExample : MonoBehaviour
 {
     public IEnemySpawner enemySpawner;
     public EnemyData data;
-    
+
 
     IEnumerator GenerateQuestion()
     {
@@ -15,7 +15,7 @@ public class QuestionGeneratorExample : MonoBehaviour
             enemySpawner.SpawnEnemy(data);
             yield return new WaitForSeconds(1);
         }
-        
+
     }
     void Start()
     {

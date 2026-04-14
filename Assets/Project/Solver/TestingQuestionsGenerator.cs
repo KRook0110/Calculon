@@ -8,11 +8,14 @@ public class TestingQuestionsGenerator : MonoBehaviour
 {
 
     [SerializeField]
-    private MultipleChoicesHandler handler;
+    private FightCoordinator handler;
     [SerializeField]
     private MultipleChoiceQuestion[] questions;
+
     [SerializeField]
     private bool onStartRun = false;
+    [SerializeField]
+    private GameObject enemyPrefab;
 
     [Header("Settings")]
     [SerializeField]
@@ -25,7 +28,12 @@ public class TestingQuestionsGenerator : MonoBehaviour
         if (initialDelay > 0f) yield return new WaitForSeconds(initialDelay);
         foreach (var question in questions)
         {
-            handler.AddQuestion(question);
+            handler.SpawnEnemy(new EnemyData
+            {
+                enemyPrefab = enemyPrefab,
+                question = question
+            });
+
             if (gapDelay > 0f) yield return new WaitForSeconds(gapDelay);
         }
     }
