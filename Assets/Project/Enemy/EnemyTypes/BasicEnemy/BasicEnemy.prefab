@@ -105,10 +105,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9f23ad2654d64589aa8cadb388c2755, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  _playerTag: Player
+  player: {fileID: 0}
+  playerTag: Player
   _damage: 10
   _speed: 2
-  _direction: {x: -1, y: 0}
+  _attackCooldown: 0.5
+  _knockbackDistance: 1
+  _knockbackDuration: 2
 --- !u!61 &5405972244614421552
 BoxCollider2D:
   m_ObjectHideFlags: 0

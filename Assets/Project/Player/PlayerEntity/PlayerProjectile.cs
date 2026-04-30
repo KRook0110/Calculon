@@ -11,6 +11,7 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField] private float _turnSpeed;
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _killDistance;
+    [SerializeField] private int _damage;
 
     private bool _onDeathSequence = false;
 
@@ -60,7 +61,7 @@ public class PlayerProjectile : MonoBehaviour
         }
 
         _onDeathSequence = true;
-        target.Kill();
+        target.Damage(_damage);
         OnHit?.Invoke();
         Destroy(gameObject);
     }
