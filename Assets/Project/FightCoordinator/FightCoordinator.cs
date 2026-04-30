@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using NUnit.Framework;
 using UnityEngine;
 
 public class FightCoordinator : MonoBehaviour, IEnemySpawner
@@ -14,7 +15,7 @@ public class FightCoordinator : MonoBehaviour, IEnemySpawner
     private GameObject _playerProjectilePrefab;
 
 
-    private Queue<Enemy> enemyQueue = new Queue<Enemy>();
+    private Queue<Enemy> _enemyQueue = new Queue<Enemy>();
 
     void OnEnable()
     {
@@ -27,34 +28,41 @@ public class FightCoordinator : MonoBehaviour, IEnemySpawner
 
     void AnswerHandle(bool isCorrect)
     {
-        if(!isCorrect)
+        if (!isCorrect)
         {
             return;
         }
 
-        _playerEntity.Attack(enemyQueue.Peek(), _playerProjectilePrefab);
-
-        enemyQueue.Dequeue();
+        _playerEntity.Attack(_enemyQueue.Peek(), _playerProjectilePrefab);
     }
 
+    private void HandleEnemyDeath()
+    {
+        if (_enemyQueue.Count > 0)
+        {
+            Enemy deadEnemy = _enemyQueue.Dequeue();
+            deadEnemy.OnDeath -= HandleEnemyDeath;
+        }
+    }
 
     public void SpawnEnemy(EnemyData data)
     {
         // Spawn the actual enemy
         var enemyGO = Instantiate(data.enemyPrefab, _spawnOrigin.position, _spawnOrigin.rotation);
         Enemy enemy = enemyGO.GetComponentInChildren<Enemy>();
-        enemy.player = _playerEntity.transform;
-
         if (enemy == null)
         {
             Debug.LogError($"Not found Enemy Instance from {enemyGO.name}");
             return;
         }
 
+        enemy.player = _playerEntity.transform;
+        enemy.OnDeath += HandleEnemyDeath;
+
         // Add the Question
         _multipleChoicesHandler.AddQuestion(data.question);
 
         // Save the order when to kill the enemy
-        enemyQueue.Enqueue(enemy);
+        _enemyQueue.Enqueue(enemy);
     }
 }

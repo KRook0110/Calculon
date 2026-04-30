@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public interface IDamageable
@@ -7,10 +8,15 @@ public interface IDamageable
 
 /**
 * @brief enemy baseclass
-*  update the Kill to change the deathscene
+*  update the Kill to change the deathscene, make sure to invoke onDeath()
 */
 public class Enemy : MonoBehaviour
 {
+    public struct DamageContext
+    {
+        public float remainingHealth;
+        public int damageDone;
+    }
 
     [SerializeField]
     public Transform player;
@@ -18,5 +24,38 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected string playerTag = "Player";
 
-    public virtual void Kill() { Destroy(gameObject); }
+    [SerializeField]
+    protected int  maxHealth = 20;
+
+    [SerializeField]
+    protected int health = 20;
+
+    public Action OnDeath;
+    public Action<DamageContext> OnDamaged;
+
+    public virtual void Kill()
+    {
+        OnDeath?.Invoke();
+        Destroy(gameObject);
+    }
+
+    public virtual void Damage(int amount)
+    {
+        if (amount <= 0)
+        {
+            return;
+        }
+
+        health = Math.Clamp(health - amount, 0, maxHealth);
+
+        OnDamaged?.Invoke(new DamageContext {
+            remainingHealth = health,
+            damageDone = amount
+        });
+
+        if(health == 0)
+        {
+            Kill();
+        }
+    }
 }
