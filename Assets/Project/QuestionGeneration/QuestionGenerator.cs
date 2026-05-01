@@ -1,0 +1,84 @@
+using System.Collections.Generic;
+using UnityEngine;
+
+public class QuestionGenerator : Singleton<QuestionGenerator>
+{
+    [System.Serializable]
+    public class StageInfo
+    {
+        public float chance;
+        public QuestionStage stage;
+    }
+    [System.Serializable]
+    public class QuestionInfo
+    {
+        public QuestionStage stage;
+        public MultipleChoiceQuestion question;
+    }
+
+    public List<StageInfo> _unlockedStages;
+
+    [Header("Elo System")]
+    [SerializeField]
+    private int currentElo = 50;
+    [SerializeField]
+    private int eloGain = 5;
+    [SerializeField]
+    private int eloLoss = 3;
+
+
+    public void UpdateElo(bool isCorrect)
+    {
+        if (isCorrect)
+        {
+            currentElo += eloGain;
+        }
+        else
+        {
+            currentElo = Mathf.Max(0, currentElo - eloLoss);
+        }
+    }
+
+    public QuestionInfo GenerateQuestion()
+    {
+        if (_unlockedStages == null || _unlockedStages.Count == 0)
+        {
+            Debug.LogWarning("No stages unlocked to pick from!");
+            return null;
+        }
+
+        var stage = GetRandomStage();
+        stage.currentElo = currentElo;
+        return new QuestionInfo {
+            stage = stage,
+            question = stage.GenerateQuestion()
+        };
+    }
+
+    private QuestionStage GetRandomStage()
+    {
+        // 1. Calculate the total weight
+        float totalChance = 0;
+        foreach (var info in _unlockedStages)
+        {
+            totalChance += info.chance;
+        }
+
+        // 2. Pick a random number between 0 and totalChance
+        float randomPoint = Random.Range(0, totalChance);
+
+        // 3. Step through the list to find where the random point lands
+        float currentSum = 0;
+        foreach (var info in _unlockedStages)
+        {
+            currentSum += info.chance;
+            if (randomPoint <= currentSum)
+            {
+                return info.stage;
+            }
+        }
+
+        // Fallback (should only hit if list is empty or weights are 0)
+        return _unlockedStages[0].stage;
+    }
+}

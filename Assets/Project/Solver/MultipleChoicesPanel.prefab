@@ -329,6 +329,8 @@ GameObject:
   - component: {fileID: 1455636743371392586}
   - component: {fileID: 6793057079330685262}
   - component: {fileID: 2839121447381290394}
+  - component: {fileID: 3011913413622444896}
+  - component: {fileID: 7969621126727498054}
   m_Layer: 5
   m_Name: MultipleChoicesPanel
   m_TagString: Untagged
@@ -413,7 +415,34 @@ MonoBehaviour:
   - {fileID: 6236078598962954810}
   - {fileID: 6044684927770129420}
   - {fileID: 3880905360219499571}
-  questionBlockerUI: {fileID: 130828136688086572}
+  cooldownTime: 2
+  _choiceTexts: []
+--- !u!114 &3011913413622444896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3580874933951538359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 361cda0c2702e4e82a7ecc6e003f3bc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChoicesBlockerHandler
+  blockerUI: {fileID: 130828136688086572}
+--- !u!114 &7969621126727498054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3580874933951538359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82576db2bea17421bad4dbc4b88aa800, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MutlipleChoiceCooldown
+  wrongAnswerCooldown: 2
 --- !u!1 &3747558365772359249
 GameObject:
   m_ObjectHideFlags: 0
