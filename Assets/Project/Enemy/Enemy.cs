@@ -30,12 +30,12 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     protected int health = 20;
 
-    public Action OnDeath;
+    public Action<Enemy> OnDeath;
     public Action<DamageContext> OnDamaged;
 
     public virtual void Kill()
     {
-        OnDeath?.Invoke();
+        OnDeath?.Invoke(this);
         Destroy(gameObject);
     }
 

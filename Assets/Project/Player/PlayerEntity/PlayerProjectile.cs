@@ -12,11 +12,39 @@ public class PlayerProjectile : MonoBehaviour
     [SerializeField] private float _moveSpeed;
     [SerializeField] private float _killDistance;
     [SerializeField] private int _damage;
+    [SerializeField] private float _lifetime = 3f;
+    private float _spawnTime;
+    private Vector3 _dpos;
 
     private bool _onDeathSequence = false;
 
+
+    void Start()
+    {
+        _spawnTime = Time.time;
+    }
+
+    void UpdateDPos()
+    {
+        _dpos = Vector2.right;
+        if (target)
+        {
+            _dpos = target.transform.position - transform.position;
+        }
+    }
+
+    void HandleLifetime()
+    {
+        if(_spawnTime + _lifetime < Time.time)
+        {
+            Destroy(gameObject);
+        }
+    }
+
     void Update()
     {
+        UpdateDPos();
+        HandleLifetime();
         HandleMovement();
         HandleEnemyDetection();
     }
@@ -25,13 +53,12 @@ public class PlayerProjectile : MonoBehaviour
     {
         if (_onDeathSequence) return;
 
-        Vector3 dpos = target.transform.position - transform.position;
 
         // move forward
         transform.position += transform.up * _moveSpeed * Time.deltaTime;
 
         // Sideway movement
-        float dotProd = Vector3.Dot(dpos, transform.right);
+        float dotProd = Vector3.Dot(_dpos, transform.right);
         // check if on the right of projectile
         if (dotProd > 0f)
         {
@@ -46,8 +73,7 @@ public class PlayerProjectile : MonoBehaviour
 
     void HandleEnemyDetection()
     {
-        Vector3 dpos = target.transform.position - transform.position;
-        if (_killDistance * _killDistance > dpos.sqrMagnitude)
+        if (_killDistance * _killDistance > _dpos.sqrMagnitude)
         {
             StartCoroutine(ProjectileDeathSequence());
         }
