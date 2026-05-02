@@ -80,3 +80,6 @@ MonoBehaviour:
   _playerEntity: {fileID: 0}
   _spawnOrigin: {fileID: 8308887018283561065}
   _playerProjectilePrefab: {fileID: 5642291565463617404, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
+  _enemySpawns:
+  - {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+  - {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
