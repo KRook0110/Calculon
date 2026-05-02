@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using NUnit.Framework;
 using UnityEngine;
 
 public class ChoicesBlockerHandler : Singleton<ChoicesBlockerHandler>
@@ -16,7 +15,6 @@ public class ChoicesBlockerHandler : Singleton<ChoicesBlockerHandler>
     // @params : object blocking only as an ID, the object itself doesn't change
     public void Block(GameObject objectBlocking)
     {
-        Debug.Log($"Attempt Block {objectBlocking.name}");
         bool present = _objectsBlocking.Add(objectBlocking);
         if (!present)
         {
@@ -32,7 +30,6 @@ public class ChoicesBlockerHandler : Singleton<ChoicesBlockerHandler>
 
     public void UnBlock(GameObject objectUnblocking)
     {
-        Debug.Log($"Attempt UnBlock {objectUnblocking.name}");
         bool removed = _objectsBlocking.Remove(objectUnblocking);
         if (!removed)
         {
