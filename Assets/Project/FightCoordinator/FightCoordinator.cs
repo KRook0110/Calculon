@@ -3,8 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class FightCoordinator : MonoBehaviour
+public class FightCoordinator : Singleton<FightCoordinator>
 {
+    [Serializable]
+    public class FightData
+    {
+        public List<GameObject> enemies;
+    }
+
 
     [SerializeField]
     private MultipleChoicesHandler _multipleChoicesHandler;
@@ -15,7 +21,7 @@ public class FightCoordinator : MonoBehaviour
     [SerializeField]
     private GameObject _playerProjectilePrefab;
     [SerializeField]
-    private Enemy[] _enemySpawns;
+    public List<GameObject> _enemySpawns;
 
     // private Queue<Enemy> _enemyQueue = new Queue<Enemy>();
     private int _currentEnemyIndex = 0;
@@ -23,11 +29,18 @@ public class FightCoordinator : MonoBehaviour
 
     public Action OnFinish;
 
+    public void InitializeFightCoordinator(FightData fightData)
+    {
+        _enemySpawns = fightData.enemies;
+    }
+
     void Start()
     {
-        if(_enemySpawns.Length > 0)
+        LevelSelector.Instance.InitializeLevel();
+
+        if(_enemySpawns.Count > 0)
         {
-            SpawnEnemy(_enemySpawns[0].gameObject);
+            SpawnEnemy(_enemySpawns[0]);
         }
         else
         {
@@ -86,10 +99,10 @@ public class FightCoordinator : MonoBehaviour
 
     private void SpawnNextEnemy()
     {
-        if (_currentEnemyIndex + 1 < _enemySpawns.Length)
+        if (_currentEnemyIndex + 1 < _enemySpawns.Count)
         {
             _currentEnemyIndex++;
-            SpawnEnemy(_enemySpawns[_currentEnemyIndex].gameObject);
+            SpawnEnemy(_enemySpawns[_currentEnemyIndex]);
         }
         else
         {
