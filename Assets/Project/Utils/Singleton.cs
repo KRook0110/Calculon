@@ -36,6 +36,8 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         }
     }
 
+    public static bool HasInstance => m_instance != null;
+
     /**
      * @brief Internal initialization logic to assign the instance and handle persistence.
      * * @warning **IMPORTANT FOR CLIENTS:** If you override the Awake method in a derived class, 
