@@ -24,7 +24,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
             if (m_instance == null)
             {
                 m_instance = FindAnyObjectByType<T>();
-                
+
                 if (m_instance == null)
                 {
                     GameObject go = new GameObject(typeof(T).Name);
@@ -55,6 +55,21 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             // Destroy duplicate instances
             Destroy(gameObject);
+        }
+    }
+
+    /**
+    * @brief Cleans up the static instance reference when the GameObject is destroyed.
+    * * This is critical for preventing memory leaks in the Unity Editor. It ensures 
+    * that the static reference is nullified so that Unity can fully garbage collect 
+    * the object when a scene is closed or Play Mode is stopped.
+    * * @note If you override this in a derived class, you MUST call `base.OnDestroy()`.
+    */
+    protected virtual void OnDestroy()
+    {
+        if (m_instance == null)
+        {
+            m_instance = null;
         }
     }
 }
