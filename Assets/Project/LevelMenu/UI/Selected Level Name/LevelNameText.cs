@@ -30,6 +30,9 @@ public class LevelNameText : MonoBehaviour
 
     void OnDisable()
     {
+        if(LevelSelector.HasInstance)
+        {
         LevelSelector.Instance.OnSelectLevel -= UpdateLevelText;
+        }
     }
 }
