@@ -68,14 +68,14 @@ public class MultiplicationStage : QuestionStage
         
         foreach (int aa in altA)
         {
-            if (aa > 0) choices.Add(aa * b);
             if (choices.Count >= 4) break;
+            if (aa > 0) choices.Add(aa * b);
         }
 
         foreach (int bb in altB)
         {
-            if (bb > 0) choices.Add(a * bb);
             if (choices.Count >= 4) break;
+            if (bb > 0) choices.Add(a * bb);
         }
 
         // 3. Fill with other possible products from the level's pool
