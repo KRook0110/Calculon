@@ -38,7 +38,7 @@ public class FightCoordinator : Singleton<FightCoordinator>
     {
         LevelSelector.Instance.InitializeLevel();
 
-        if(_enemySpawns.Count > 0)
+        if (_enemySpawns.Count > 0)
         {
             SpawnEnemy(_enemySpawns[0]);
         }
@@ -94,7 +94,10 @@ public class FightCoordinator : Singleton<FightCoordinator>
         enemy.OnDeath -= HandleEnemyDeath;
         _aliveEnemies.Remove(enemy);
 
-        SpawnNextEnemy();
+        if (_aliveEnemies.Count == 0)
+        {
+            SpawnNextEnemy();
+        }
     }
 
     private void SpawnNextEnemy()
@@ -113,7 +116,12 @@ public class FightCoordinator : Singleton<FightCoordinator>
 
     public void SpawnEnemy(GameObject enemyPrefab)
     {
-        var enemyGO = Instantiate(enemyPrefab, _spawnOrigin.position, _spawnOrigin.rotation);
+        SpawnEnemy(enemyPrefab, _spawnOrigin.position, _spawnOrigin.rotation);
+    }
+
+    public void SpawnEnemy(GameObject enemyPrefab, Vector3 position, Quaternion rotation)
+    {
+        var enemyGO = Instantiate(enemyPrefab, position, rotation);
         Enemy enemy = enemyGO.GetComponentInChildren<Enemy>();
 
         if (enemy == null)
@@ -126,4 +134,5 @@ public class FightCoordinator : Singleton<FightCoordinator>
         enemy.player = _playerEntity.transform;
         enemy.OnDeath += HandleEnemyDeath;
     }
+
 }
