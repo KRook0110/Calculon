@@ -10,7 +10,7 @@ public interface IDamageable
 * @brief enemy baseclass
 *  update the Kill to change the deathscene, make sure to invoke onDeath()
 */
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IComparable<Enemy>
 {
     public struct DamageContext
     {
@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     protected string playerTag = "Player";
 
     [SerializeField]
-    protected int  maxHealth = 20;
+    protected int maxHealth = 20;
 
     [SerializeField]
     protected int health = 20;
@@ -48,14 +48,20 @@ public class Enemy : MonoBehaviour
 
         health = Math.Clamp(health - amount, 0, maxHealth);
 
-        OnDamaged?.Invoke(new DamageContext {
+        OnDamaged?.Invoke(new DamageContext
+        {
             remainingHealth = health,
             damageDone = amount
         });
 
-        if(health == 0)
+        if (health == 0)
         {
             Kill();
         }
+    }
+
+    public int CompareTo(Enemy other)
+    {
+        return GetInstanceID().CompareTo(other.GetInstanceID());
     }
 }

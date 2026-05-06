@@ -20,19 +20,61 @@ public class BasicEnemy : Enemy
     private float _knockbackDistance = 0;
     [SerializeField]
     private float _knockbackDuration = 1f;
+    [Header("Movement Settings")]
+    [SerializeField]
+    private bool _onlyMoveForwards = false;
+    [SerializeField]
+    private float _rotationTrackingSpeed = 10f;
+    [SerializeField]
+    private float _trackingDelay = 2f;
 
     private float _lastAttack = -Mathf.Infinity;
     private bool _allowMove = true;
+    private float _spawnTime;
 
+
+    void Start()
+    {
+        _spawnTime = Time.time;
+    }
 
     void Update()
     {
         if (_allowMove)
         {
-            Vector3 dPos = player.position - transform.position;
-            Vector3 totalDisplacement = dPos.normalized * _speed * Time.deltaTime;
-            transform.position += totalDisplacement;
+            if(_onlyMoveForwards)
+            {
+                MoveForward();
+            }
+            else
+            {
+                MoveDirectly();
+            }
         }
+    }
+
+    void MoveForward()
+    {
+        transform.position += -transform.right * Time.deltaTime * _speed;
+        if(Time.time > _spawnTime + _trackingDelay)
+        {
+           RotationTracking(_rotationTrackingSpeed, player.position); 
+        } 
+    }
+
+    void RotationTracking(float speed, Vector3 position)
+    {
+        Vector3 dPos = position - transform.position;
+        float dotProduct = Vector2.Dot(-transform.up, dPos.normalized);
+        transform.rotation *= Quaternion.Euler(0f, 0f, (dotProduct > 0f ? speed: -speed) * Time.deltaTime);
+    }
+
+    // Moving without rotating the player.
+    void MoveDirectly()
+    {
+        Vector3 dPos = player.position - transform.position;
+        Vector3 totalDisplacement = dPos.normalized * _speed * Time.deltaTime;
+        transform.position += totalDisplacement;
     }
 
     protected virtual void Attack(IDamageable handler)
