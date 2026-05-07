@@ -100,7 +100,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4130079126942939931}
-  - component: {fileID: 5965748431475049069}
+  - component: {fileID: 7705191066026361046}
   m_Layer: 0
   m_Name: PlayerProjectile
   m_TagString: Untagged
@@ -124,7 +124,7 @@ Transform:
   - {fileID: 7059411228346289700}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5965748431475049069
+--- !u!114 &7705191066026361046
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,11 +133,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5642291565463617404}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d90b424bf350448da6c2987a4e513f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b85de8673bc9455191df5ab9be78ec8, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerProjectile
+  m_EditorClassIdentifier: Assembly-CSharp::BasicPlayerProjectile
   target: {fileID: 0}
-  _turnSpeed: 90
+  _turnSpeed: 200
   _moveSpeed: 10
   _killDistance: 1
   _damage: 5
+  _lifetime: 3

@@ -23,9 +23,11 @@ public class FightCoordinator : Singleton<FightCoordinator>
     [SerializeField]
     public List<GameObject> _enemySpawns;
 
+    // Careful : enemy.Damage(damage) updates this set, when a certain enemy dies
+    public SortedSet<Enemy> aliveEnemies { get; private set; } = new SortedSet<Enemy>();
+
     // private Queue<Enemy> _enemyQueue = new Queue<Enemy>();
     private int _currentEnemyIndex = 0;
-    private SortedSet<Enemy> _aliveEnemies = new SortedSet<Enemy>();
 
     public Action OnFinish;
 
@@ -63,7 +65,7 @@ public class FightCoordinator : Singleton<FightCoordinator>
     {
         Enemy closestEnemy = null;
         float closestEnemySqrDist = Mathf.Infinity;
-        foreach (Enemy curEnemy in _aliveEnemies)
+        foreach (Enemy curEnemy in aliveEnemies)
         {
             var sqrDist = (curEnemy.transform.position - _playerEntity.transform.position).sqrMagnitude;
 
@@ -92,9 +94,9 @@ public class FightCoordinator : Singleton<FightCoordinator>
     {
         if (!enemy) return;
         enemy.OnDeath -= HandleEnemyDeath;
-        _aliveEnemies.Remove(enemy);
+        aliveEnemies.Remove(enemy);
 
-        if (_aliveEnemies.Count == 0)
+        if (aliveEnemies.Count == 0)
         {
             SpawnNextEnemy();
         }
@@ -130,7 +132,7 @@ public class FightCoordinator : Singleton<FightCoordinator>
             return;
         }
 
-        _aliveEnemies.Add(enemy);
+        aliveEnemies.Add(enemy);
         enemy.player = _playerEntity.transform;
         enemy.OnDeath += HandleEnemyDeath;
     }
