@@ -86,7 +86,7 @@ public class BasicPlayerProjectile : PlayerProjectile
 
         _onDeathSequence = true;
         DamageHandle();
-        OnHit?.Invoke();
+        OnHit?.Invoke(this);
         Destroy(gameObject);
     }
 

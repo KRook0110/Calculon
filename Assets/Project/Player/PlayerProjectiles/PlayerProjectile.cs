@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class PlayerProjectile : MonoBehaviour
 {
     public Enemy target;
-    public Action OnHit;
+    public Action<PlayerProjectile> OnHit;
 }
