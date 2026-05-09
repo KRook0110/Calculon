@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: _damage
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7705191066026361046, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
+      propertyPath: _turnSpeed
+      value: 360
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class FractionStageAddition : QuestionStage
+public class FractionAdditionStage : QuestionStage
 {
+    private void OnValidate()
+    {
+        name = "FractionAdditionStage";
+    }
+
     private struct FractionLevel
     {
         public int minElo;

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class MultiplicationStage : QuestionStage
 {
+    private void OnValidate()
+    {
+        name = "MultiplicationStage";
+    }
+
     private struct MultiplicationLevel
     {
         public int minElo;

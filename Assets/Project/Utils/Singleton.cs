@@ -44,14 +44,12 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
      * you **MUST** call `base.Awake()` at the start of your method. Failure to do so will 
      * prevent the Singleton from initializing correctly and may result in null references 
      * or duplicate instances.
-     * * @note By default, this implementation uses DontDestroyOnLoad to persist across scenes.
      */
     protected virtual void Awake()
     {
         if (m_instance == null)
         {
             m_instance = this as T;
-            // DontDestroyOnLoad(gameObject);
         }
         else if (m_instance != this)
         {
@@ -69,7 +67,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
     */
     protected virtual void OnDestroy()
     {
-        if (m_instance == null)
+        if (m_instance == this as T)
         {
             m_instance = null;
         }

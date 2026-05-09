@@ -11,6 +11,7 @@ public class BasicPlayerProjectile : PlayerProjectile
     [SerializeField] private float _killDistance;
     [SerializeField] private int _damage;
     [SerializeField] private float _lifetime = 3f;
+    [SerializeField]private float _trackingDelay = 0.5f;
     private float _spawnTime;
     private Vector3 _dpos;
 
@@ -51,9 +52,13 @@ public class BasicPlayerProjectile : PlayerProjectile
     {
         if (_onDeathSequence) return;
 
-
         // move forward
         transform.position += transform.up * _moveSpeed * Time.deltaTime;
+
+        if(_trackingDelay + _spawnTime  < Time.time) HandleSidewayMovement();
+    }
+    void HandleSidewayMovement()
+    {
 
         // Sideway movement
         float dotProd = Vector3.Dot(_dpos, transform.right);
@@ -67,6 +72,7 @@ public class BasicPlayerProjectile : PlayerProjectile
         {
             transform.rotation *= Quaternion.Euler(0f, 0f, _turnSpeed * Time.deltaTime);
         }
+
     }
 
     void HandleEnemyDetection()
