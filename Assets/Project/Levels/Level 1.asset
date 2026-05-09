@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Level 1
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   levelName: Level 1
+  nextLevels:
+  - {fileID: 11400000, guid: bfa76b3df78724598ac44da5e75d4ab6, type: 2}
+  unlockQuestionTypes:
+  - AdditionStage
   enemies:
   - {fileID: 2023191207417578406, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
   - {fileID: 4728416135819813670, guid: 5a9446bca1375430b8c928bcddd09394, type: 3}

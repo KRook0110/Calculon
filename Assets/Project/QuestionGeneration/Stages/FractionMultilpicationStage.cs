@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class FractionStageMultiplication : QuestionStage
+public class FractionMultilpicationStage : QuestionStage
 {
+    private void OnValidate()
+    {
+        name = "FractionMultilpicationStage";
+    }
+
     private struct FractionMultiplicationLevel
     {
         public int minElo;

@@ -5,6 +5,11 @@ using UnityEngine;
 
 public class DivisionStage : QuestionStage
 {
+    private void OnValidate()
+    {
+        name = "DivisionStage";
+    }
+
     private struct DivisionLevel
     {
         public int minElo;

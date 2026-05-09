@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class QuestionGenerator : Singleton<QuestionGenerator>
@@ -9,6 +10,7 @@ public class QuestionGenerator : Singleton<QuestionGenerator>
         public float chance;
         public QuestionStage stage;
     }
+
     [System.Serializable]
     public class QuestionInfo
     {
@@ -16,7 +18,10 @@ public class QuestionGenerator : Singleton<QuestionGenerator>
         public MultipleChoiceQuestion question;
     }
 
-    public List<StageInfo> _unlockedStages;
+    [SerializeField]
+    private List<StageInfo> _unlockedStages = new List<StageInfo>();
+    [SerializeField]
+    private List<StageInfo> _availableStages = new List<StageInfo>();
 
     [Header("Elo System")]
     [SerializeField]
@@ -26,6 +31,43 @@ public class QuestionGenerator : Singleton<QuestionGenerator>
     [SerializeField]
     private int eloLoss = 3;
 
+
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(this);
+    }
+
+    public void EnableQuestionType(string stageName)
+    {
+        foreach (var stage in _unlockedStages)
+        {
+            if (stage.stage.name == stageName)
+            {
+                Debug.LogWarning($"Couldn't Unlock Stage {stageName}, Same stage is already present in unlocked stages");
+                return;
+            }
+        }
+
+        StageInfo info = null;
+        foreach (var stage in _availableStages)
+        {
+            if (stage.stage.name == stageName)
+            {
+                info = stage;
+                break;
+            }
+        }
+        if(info == null)
+        {
+            Debug.LogError($"Couldn't find an available stage with name {stageName}.");
+            return;
+        }
+
+        _unlockedStages.Add(info);
+
+        Debug.Log($"Unlocked Stage {stageName}");
+    }
 
     public void UpdateElo(bool isCorrect)
     {
@@ -49,7 +91,8 @@ public class QuestionGenerator : Singleton<QuestionGenerator>
 
         var stage = GetRandomStage();
         stage.currentElo = currentElo;
-        return new QuestionInfo {
+        return new QuestionInfo
+        {
             stage = stage,
             question = stage.GenerateQuestion()
         };

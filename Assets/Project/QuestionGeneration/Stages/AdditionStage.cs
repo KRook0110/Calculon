@@ -5,8 +5,11 @@ using UnityEngine;
 
 public class AdditionStage : QuestionStage
 {
-    [SerializeField]
-    [Tooltip("common mistake patterns, these will be the distance between choices, and the correct answer")]
+    private void OnValidate()
+    {
+        name = "AdditionStage";
+    }
+
     private int[] offsets = { 1, -1, 10, -10, 2, -2, 5, -5, -4, 4};
     private struct AdditionLevel
     {

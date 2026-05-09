@@ -84,6 +84,7 @@ MonoBehaviour:
   _killDistance: 1
   _damage: 4
   _lifetime: 3
+  _trackingDelay: 0
   _aoeDamage: 2
   _aoeRadius: 1.5
   _explosionVFXPrefab: {fileID: 8530076104168724580, guid: 620d1c05887634ce581e8b56f20e12a4, type: 3}
