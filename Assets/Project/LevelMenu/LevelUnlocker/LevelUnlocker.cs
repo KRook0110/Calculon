@@ -9,7 +9,10 @@ public class LevelUnlocker : MonoBehaviour
 
     void OnDisable()
     {
-        GameOverHandle.Instance.OnWin -= UnlockNextLevels;
+        if (GameOverHandle.HasInstance)
+        {
+            GameOverHandle.Instance.OnWin -= UnlockNextLevels;
+        }
     }
 
     void UnlockNextLevels()
