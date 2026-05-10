@@ -319,8 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SaveDataViewer
   _savePath: /Users/shawnandrew/Library/Application Support/DefaultCompany/MagicNagger/savegame.json
   _data:
-    unlockedLevels:
-    - Level 1
+    unlockedLevels: []
 --- !u!1 &150167786
 GameObject:
   m_ObjectHideFlags: 0
