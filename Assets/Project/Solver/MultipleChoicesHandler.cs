@@ -50,10 +50,11 @@ public class MultipleChoicesHandler : Singleton<MultipleChoicesHandler>
     private List<TextMeshProUGUI> _choiceTexts = new List<TextMeshProUGUI>();
     private List<Button> _choiceButtons = new List<Button>();
     private MultipleChoiceQuestion _currentQuestion;
+    private QuestionStage _currentStage;
 
     /// Invoked when a user submits an answer.
     /// The boolean parameter is true if the answer was correct; otherwise, false.
-    public Action<bool> OnAnswer;
+    public Action<bool, QuestionStage> OnAnswer;
 
     // Invoked when there are no Questions left 
     public Action OnFinish;
@@ -86,12 +87,12 @@ public class MultipleChoicesHandler : Singleton<MultipleChoicesHandler>
 
     public void Answer(bool isCorrect)
     {
+        OnAnswer?.Invoke(isCorrect, _currentStage);
+
         if (isCorrect)
         {
             NextQuestion();
         }
-
-        OnAnswer?.Invoke(isCorrect);
     }
 
     private void NextQuestion()
@@ -105,6 +106,7 @@ public class MultipleChoicesHandler : Singleton<MultipleChoicesHandler>
         }
 
         _currentQuestion = info.question;
+        _currentStage = info.stage;
 
         RefreshUI();
     }

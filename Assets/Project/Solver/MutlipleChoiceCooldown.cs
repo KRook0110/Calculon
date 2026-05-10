@@ -28,7 +28,7 @@ public class MutlipleChoiceCooldown : Singleton<MutlipleChoiceCooldown>
         cooldowns.Add(Time.time + timeAmount);
     }
 
-    void WrongAnswerHandle(bool isCorrect)
+    void WrongAnswerHandle(bool isCorrect, QuestionStage stage)
     {
         if (isCorrect) return;
         AddCooldown(wrongAnswerCooldown);

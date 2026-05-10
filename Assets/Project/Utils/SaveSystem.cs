@@ -7,6 +7,8 @@ using UnityEngine;
 public class GameSaveData
 {
     public List<string> unlockedLevels = new List<string>();
+    public List<string> completedLevels = new List<string>();
+    public int currentElo = 50;
 }
 
 public static class SaveSystem

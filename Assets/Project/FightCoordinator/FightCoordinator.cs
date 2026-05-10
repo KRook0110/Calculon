@@ -11,7 +11,6 @@ public class FightCoordinator : Singleton<FightCoordinator>
         public List<GameObject> enemies;
     }
 
-
     [SerializeField]
     private MultipleChoicesHandler _multipleChoicesHandler;
     [SerializeField]
@@ -78,7 +77,7 @@ public class FightCoordinator : Singleton<FightCoordinator>
         return closestEnemy;
     }
 
-    void AnswerHandle(bool isCorrect)
+    void AnswerHandle(bool isCorrect, QuestionStage stage)
     {
         QuestionGenerator.Instance.UpdateElo(isCorrect);
 
@@ -87,7 +86,8 @@ public class FightCoordinator : Singleton<FightCoordinator>
             return;
         }
 
-        _playerEntity.Attack(FindClosestEnemy(), _playerProjectilePrefab);
+        var projectilePrefab = ProjectileMapping.Instance.GetProjectilePrefab(stage.name).gameObject;
+        _playerEntity.Attack(FindClosestEnemy(), projectilePrefab);
     }
 
     void HandleEnemyDeath(Enemy enemy)

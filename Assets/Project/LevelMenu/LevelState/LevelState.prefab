@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3577973702137814595}
   - component: {fileID: 1175660888748178597}
   m_Layer: 0
-  m_Name: UnlockedLevels
+  m_Name: LevelState
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

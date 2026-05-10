@@ -36,6 +36,20 @@ public class QuestionGenerator : Singleton<QuestionGenerator>
     {
         base.Awake();
         DontDestroyOnLoad(this);
+        LoadElo();
+    }
+
+    private void LoadElo()
+    {
+        GameSaveData data = SaveSystem.Load();
+        currentElo = data.currentElo;
+    }
+
+    private void SaveElo()
+    {
+        GameSaveData data = SaveSystem.Load();
+        data.currentElo = currentElo;
+        SaveSystem.Save(data);
     }
 
     public void EnableQuestionType(string stageName)
@@ -79,6 +93,7 @@ public class QuestionGenerator : Singleton<QuestionGenerator>
         {
             currentElo = Mathf.Max(0, currentElo - eloLoss);
         }
+        SaveElo();
     }
 
     public QuestionInfo GenerateQuestion()

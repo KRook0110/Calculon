@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,11 +9,29 @@ public class LevelPlatform : MonoBehaviour, IPointerClickHandler
 {
     [SerializeField]
     private LevelData _level;
-    bool _unlocked = false;
+
+    [Header("Colors")]
+    [SerializeField]
+    private Color lockedColor;
+    [SerializeField]
+    private Color unlockedColor;
+    [SerializeField]
+    private Color completedColor;
+
+    private LevelState.State _currentState = LevelState.State.Locked;
+
+    private SpriteRenderer _spriteRenderer;
+    private UnityEngine.UI.Image _uiImage;
+
+    private void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _uiImage = GetComponent<UnityEngine.UI.Image>();
+    }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (_unlocked)
+        if (_currentState != LevelState.State.Locked)
         {
             LevelSelector.Instance.selectedLevel = _level;
         }
@@ -20,7 +39,16 @@ public class LevelPlatform : MonoBehaviour, IPointerClickHandler
 
     void Start()
     {
-        if (!UnlockedLevels.HasInstance)
+        Checks();
+
+        _currentState = LevelState.Instance.GetLevelState(_level.levelName);
+
+        HandleColor();
+    }
+
+    void Checks()
+    {
+        if (!LevelState.HasInstance)
         {
             Debug.LogError("UnlockedLevels has no instance in the scene.");
             return;
@@ -32,12 +60,39 @@ public class LevelPlatform : MonoBehaviour, IPointerClickHandler
             return;
         }
 
-        if (UnlockedLevels.Instance.Unlocked(_level.name))
+    }
+
+    void HandleColor()
+    {
+        switch (_currentState)
         {
-            _unlocked = true;
-            UnlockQuestionTypes();
+            case LevelState.State.Unlocked:
+                SetColor(unlockedColor);
+                UnlockQuestionTypes();
+                break;
+            case LevelState.State.Completed:
+                SetColor(completedColor);
+                UnlockQuestionTypes();
+                break;
+            case LevelState.State.Locked:
+                SetColor(lockedColor);
+                break;
+        }
+
+    }
+
+    void SetColor(Color color)
+    {
+        if (_spriteRenderer != null)
+        {
+            _spriteRenderer.color = color;
+        }
+        else if (_uiImage != null)
+        {
+            _uiImage.color = color;
         }
     }
+
     void UnlockQuestionTypes()
     {
         if (!QuestionGenerator.HasInstance)
@@ -49,6 +104,5 @@ public class LevelPlatform : MonoBehaviour, IPointerClickHandler
         {
             QuestionGenerator.Instance.EnableQuestionType(questionTypes);
         }
-
     }
 }
