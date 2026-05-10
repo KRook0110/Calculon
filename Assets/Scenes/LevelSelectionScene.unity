@@ -1270,7 +1270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9344451ff5d8e4b05abf909c97b4414b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ReactUnityCommunication
-  _latestMessage: {fileID: 0}
+  _latestMessage: {fileID: 174548340}
 --- !u!4 &1359226056
 Transform:
   m_ObjectHideFlags: 0
