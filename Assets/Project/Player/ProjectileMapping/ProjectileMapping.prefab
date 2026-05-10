@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &794142093526805780
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 897511450951991396}
+  - component: {fileID: 7931490906591981871}
+  m_Layer: 0
+  m_Name: ProjectileMapping
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &897511450951991396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794142093526805780}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.63305, y: -0.5286, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7931490906591981871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794142093526805780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95477468fd6504bf69fefbd3871f1aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileMapping
+  mappings:
+  - stageName: AdditionStage
+    projectilePrefab: {fileID: 7705191066026361046, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
+  - stageName: SubtractionStage
+    projectilePrefab: {fileID: 7705191066026361046, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
+  - stageName: MultiplicationStage
+    projectilePrefab: {fileID: 6096377154971940940, guid: 01bb10506a5614d558b193181085066a, type: 3}
+  - stageName: DivisionStage
+    projectilePrefab: {fileID: 8381686142107666886, guid: b72df3e8423af4e7ea802556137a7c67, type: 3}
+  - stageName: FractionAdditionStage
+    projectilePrefab: {fileID: 8652069470260534526, guid: 0e3625f8b370642b88a5bd7fb75c7579, type: 3}
+  - stageName: FractionSubtractionStage
+    projectilePrefab: {fileID: 2342539804068301471, guid: 85ba6912571fc43c489921e0df32fe1d, type: 3}
+  - stageName: FractionMultiplicationStage
+    projectilePrefab: {fileID: 4820234639014550676, guid: c6e0a35d0c4f24a21b4b35f25476f1db, type: 3}

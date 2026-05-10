@@ -21,7 +21,7 @@ public class LevelUnlocker : MonoBehaviour
         foreach (var nextLevel in level.nextLevels)
         {
             Debug.Log($"Trying to unlock {nextLevel.name}");
-            UnlockedLevels.Instance.UnlockLevel(nextLevel.name);
+            LevelState.Instance.UnlockLevel(nextLevel.name);
         }
     }
 }

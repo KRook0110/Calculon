@@ -141,4 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6195d9d218c13490a85dd466922ebf36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelPlatform
-  level: {fileID: 11400000, guid: bf2e29204e36541ff9af9f807c20fc8e, type: 2}
+  _level: {fileID: 0}
+  lockedColor: {r: 0, g: 0, b: 0, a: 0}
+  unlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  completedColor: {r: 0.61000353, g: 0.6449178, b: 0.8679245, a: 1}

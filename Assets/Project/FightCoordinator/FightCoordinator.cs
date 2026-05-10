@@ -86,8 +86,8 @@ public class FightCoordinator : Singleton<FightCoordinator>
             return;
         }
 
-        _playerEntity.Attack(FindClosestEnemy(), _playerProjectilePrefab);
-
+        var projectilePrefab = ProjectileMapping.Instance.GetProjectilePrefab(stage.name).gameObject;
+        _playerEntity.Attack(FindClosestEnemy(), projectilePrefab);
     }
 
     void HandleEnemyDeath(Enemy enemy)
