@@ -7,6 +7,7 @@ public class ReactUnityCommunication : Singleton<ReactUnityCommunication>
     public TextMeshProUGUI _latestMessage;
 
     [DllImport("__Internal")]
+    // ini yang gw panggil buat kasih ke lu
     private static extern void ReactMessage(string message);
 
     public void SendAldenAnjing()
@@ -16,6 +17,7 @@ public class ReactUnityCommunication : Singleton<ReactUnityCommunication>
 #endif
     }
 
+    // ini yang lu panggil
     public void SpawnNiggers(string message)
     {
         _latestMessage.text = message;
