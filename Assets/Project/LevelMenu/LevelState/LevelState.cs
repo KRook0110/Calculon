@@ -27,6 +27,7 @@ public class LevelState : Singleton<LevelState>
 
         UnlockInitialLevels();
     }
+
     private void DebugUnlockedLevels()
     {
         foreach(var levelName in _unlockedLevels)

@@ -30,6 +30,12 @@ public class ReactUnityCommunication : Singleton<ReactUnityCommunication>
     [DllImport("__Internal")]
     private static extern void Finished(bool alive);
 
+    protected override void Awake()
+    {
+        base.Awake();
+        DontDestroyOnLoad(gameObject);
+    }
+
     public void GiveInitialdata(string data)
     {
         Debug.Log($"ReactUnityCommunication : GiveInitialData called with data {data}");
@@ -77,6 +83,7 @@ public class ReactUnityCommunication : Singleton<ReactUnityCommunication>
 
     public void SendInit()
     {
+        Debug.Log($"ReactUnityCommunication : Init() Called");
 #if UNITY_WEBGL == true && UNITY_EDITOR == false
     Init();
 #endif
@@ -84,6 +91,7 @@ public class ReactUnityCommunication : Singleton<ReactUnityCommunication>
 
     public void SendLevel(string levelName)
     {
+        Debug.Log($"ReactUnityCommunication : Level({levelName}) Called");
 #if UNITY_WEBGL == true && UNITY_EDITOR == false
     Level(levelName);
 #endif
@@ -91,15 +99,19 @@ public class ReactUnityCommunication : Singleton<ReactUnityCommunication>
 
     public void SendAnswer(bool isCorrect)
     {
+        int numRepresentation = isCorrect?1:0;
+        Debug.Log($"ReactUnityCommunication : Answer({numRepresentation}) Called");
 #if UNITY_WEBGL == true && UNITY_EDITOR == false
-    Answer(isCorrect);
+    Answer(numRepresentation);
 #endif
     }
 
     public void SendFinished(bool isAlive)
     {
+        int numRepresentation = isAlive?1:0;
+        Debug.Log($"ReactUnityCommunication : Finished({numRepresentation}) Called");
 #if UNITY_WEBGL == true && UNITY_EDITOR == false
-    Finished(isAlive);
+    Finished(numRepresentation);
 #endif
     }
 }
