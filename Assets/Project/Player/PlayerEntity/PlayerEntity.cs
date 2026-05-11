@@ -1,4 +1,5 @@
 using System;
+using NUnit.Framework;
 using UnityEngine;
 
 public class PlayerEntity : MonoBehaviour, IDamageable
@@ -19,8 +20,16 @@ public class PlayerEntity : MonoBehaviour, IDamageable
 
     private int _currentHealth;
 
+    public IPlayerAniamtionHandler _animationHandler;
     public Action<PlayerDamageInfo> OnDamage;
     public Action OnDie;
+
+    void Awake()
+    {
+        _animationHandler = GetComponentInChildren<IPlayerAniamtionHandler>();
+        Assert.NotNull(_animationHandler);
+    }
+
 
     public void Damage(int damage)
     {
@@ -28,7 +37,8 @@ public class PlayerEntity : MonoBehaviour, IDamageable
 
         _currentHealth -= damage;
 
-        OnDamage?.Invoke(new PlayerDamageInfo {
+        OnDamage?.Invoke(new PlayerDamageInfo
+        {
             maxHealth = _maxHealth,
             remainingHealth = _currentHealth,
             damageTaken = damage
@@ -43,12 +53,14 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     {
         var projectileGO = Instantiate(projectilePrefab, projectileOrigin.position, projectileOrigin.rotation);
         var projectile = projectileGO.GetComponentInChildren<PlayerProjectile>();
-        if(projectile == null)
+        if (projectile == null)
         {
             Debug.LogError($"PlayerPorjectile instance not found in {projectilePrefab.name}");
             return;
         }
         projectile.target = enemy;
+        
+        // _animationHandler.StartAnimation(AnimationMapping.Instance.GetAnimationName());
 
     }
 
