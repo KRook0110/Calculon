@@ -21,9 +21,6 @@ public class ProjectileMapping : Singleton<ProjectileMapping>
     protected override void Awake()
     {
         base.Awake();
-        // DontDestroyOnLoad(this);
-        
-        // Ensure the dictionary is initialized even if Awake is called multiple times (though Singleton handles it)
         InitializeDictionary();
     }
 

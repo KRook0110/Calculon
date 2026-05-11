@@ -1,6 +1,7 @@
 using System;
-using NUnit.Framework;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerEntity : MonoBehaviour, IDamageable
 {
@@ -20,14 +21,14 @@ public class PlayerEntity : MonoBehaviour, IDamageable
 
     private int _currentHealth;
 
-    public IPlayerAniamtionHandler _animationHandler;
+    public IPlayerAnimationHandler _animationHandler;
     public Action<PlayerDamageInfo> OnDamage;
     public Action OnDie;
 
     void Awake()
     {
-        _animationHandler = GetComponentInChildren<IPlayerAniamtionHandler>();
-        Assert.NotNull(_animationHandler);
+        _animationHandler = GetComponentInChildren<IPlayerAnimationHandler>();
+        Assert.IsNotNull(_animationHandler);
     }
 
 
@@ -51,17 +52,33 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     }
     public void Attack(Enemy enemy, GameObject projectilePrefab)
     {
+        var projectileComponent = projectilePrefab.GetComponentInChildren<PlayerProjectile>();
+        if (projectileComponent == null)
+        {
+            Debug.LogError($"PlayerProjectile component not found in prefab {projectilePrefab.name}");
+            return;
+        }
+
+        var animData = AnimationMapping.Instance.GetAnimationData(projectileComponent.type);
+        
+        _animationHandler.StartAnimation(animData.animationName);
+        StartCoroutine(DelayedSpawn(enemy, projectilePrefab, animData.projectileSpawnDelay));
+    }
+
+    private IEnumerator DelayedSpawn(Enemy enemy, GameObject projectilePrefab, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        if (enemy == null) yield break;
+
         var projectileGO = Instantiate(projectilePrefab, projectileOrigin.position, projectileOrigin.rotation);
         var projectile = projectileGO.GetComponentInChildren<PlayerProjectile>();
         if (projectile == null)
         {
-            Debug.LogError($"PlayerPorjectile instance not found in {projectilePrefab.name}");
-            return;
+            Debug.LogError($"PlayerProjectile instance not found in {projectilePrefab.name}");
+            yield break;
         }
         projectile.target = enemy;
-        
-        // _animationHandler.StartAnimation(AnimationMapping.Instance.GetAnimationName());
-
     }
 
 

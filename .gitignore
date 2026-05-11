@@ -60,8 +60,6 @@ mono_crash.*
 *.unitypackage
 *.unitypackage.meta
 *.app
-Calculon/
-Calculon.app/
 
 # Crashlytics
 crashlytics-build.properties

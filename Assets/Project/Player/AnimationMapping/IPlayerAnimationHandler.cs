@@ -1,4 +1,4 @@
-public interface IPlayerAniamtionHandler
+public interface IPlayerAnimationHandler
 {
     public void StartAnimation(string animationName);
 }

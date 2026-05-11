@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-public class LeafRangerAnimationHandler : MonoBehaviour
+public class LeafRangerAnimationHandler : MonoBehaviour, IPlayerAnimationHandler
 {
     public class EventGroup
     {
@@ -101,5 +101,11 @@ public class LeafRangerAnimationHandler : MonoBehaviour
     public void TriggerAtk3End()
     {
         OnAtk3.End?.Invoke();
+    }
+
+    public void StartAnimation(string animationName)
+    {
+        _animator.Play(_idleHash);
+        _animator.Play(animationName);
     }
 }
