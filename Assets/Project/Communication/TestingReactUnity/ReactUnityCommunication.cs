@@ -7,13 +7,12 @@ public class ReactUnityCommunication : Singleton<ReactUnityCommunication>
     public TextMeshProUGUI _latestMessage;
 
     [DllImport("__Internal")]
-    // ini yang gw panggil buat kasih ke lu
-    private static extern void ReactMessage(string message);
+    private static extern void ReactMessage(string message, int number);
 
     public void SendAldenAnjing()
     {
 #if UNITY_WEBGL == true && UNITY_EDITOR == false
-    ReactMessage("Testing Alden Anjing");
+    ReactMessage("Testing Alden Anjing", 10);
 #endif
     }
 
