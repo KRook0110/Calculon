@@ -16,7 +16,7 @@ public class ReactUnityCommunication : Singleton<ReactUnityCommunication>
         Debug.Log($"LOG -> ReactMessage({message}, {number})");
 
 #if UNITY_WEBGL == true && UNITY_EDITOR == false
-    ReactMessage(message, number);
+    ReactMessage("Testing", 10);
 #endif
     }
 
