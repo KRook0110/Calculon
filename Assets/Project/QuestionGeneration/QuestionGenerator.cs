@@ -23,8 +23,7 @@ public class QuestionGenerator : Singleton<QuestionGenerator>
     private List<StageInfo> _availableStages = new List<StageInfo>();
 
     [Header("Elo System")]
-    [SerializeField]
-    private int currentElo = 50;
+    public int currentElo {get; private set;} = 50;
     [SerializeField]
     private int eloGain = 5;
     [SerializeField]
@@ -92,6 +91,12 @@ public class QuestionGenerator : Singleton<QuestionGenerator>
         {
             currentElo = Mathf.Max(0, currentElo - eloLoss);
         }
+        SaveElo();
+    }
+
+    public void SetElo(int newElo)
+    {
+        currentElo = newElo;
         SaveElo();
     }
 
