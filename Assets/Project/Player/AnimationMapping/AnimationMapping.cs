@@ -2,21 +2,28 @@ using UnityEngine;
 using System.Collections.Generic;
 
 /**
- * @brief A singleton mapping between stage names (strings) and their corresponding animation names (strings).
+ * @brief A singleton mapping between PlayerProjectile types and their corresponding animation data.
  */
 public class AnimationMapping : Singleton<AnimationMapping>
 {
     [System.Serializable]
+    public struct AnimationData
+    {
+        public string animationName;
+        public float projectileSpawnDelay;
+    }
+
+    [System.Serializable]
     public struct Mapping
     {
-        public string stageName;
-        public string animationName;
+        public PlayerProjectile.Type projectileType;
+        public AnimationData animationData;
     }
 
     [SerializeField]
     private List<Mapping> mappings = new List<Mapping>();
 
-    private Dictionary<string, string> m_mappingDict;
+    private Dictionary<PlayerProjectile.Type, AnimationData> m_mappingDict;
 
     protected override void Awake()
     {
@@ -29,44 +36,38 @@ public class AnimationMapping : Singleton<AnimationMapping>
     {
         if (m_mappingDict != null) return;
 
-        m_mappingDict = new Dictionary<string, string>();
+        m_mappingDict = new Dictionary<PlayerProjectile.Type, AnimationData>();
         foreach (var mapping in mappings)
         {
-            if (string.IsNullOrEmpty(mapping.stageName))
+            if (!m_mappingDict.ContainsKey(mapping.projectileType))
             {
-                Debug.LogWarning("AnimationMapping: Found a mapping with an empty stage name.");
-                continue;
-            }
-
-            if (!m_mappingDict.ContainsKey(mapping.stageName))
-            {
-                m_mappingDict.Add(mapping.stageName, mapping.animationName);
+                m_mappingDict.Add(mapping.projectileType, mapping.animationData);
             }
             else
             {
-                Debug.LogWarning($"AnimationMapping: Duplicate mapping for stage name '{mapping.stageName}'. Only the first one will be used.");
+                Debug.LogWarning($"AnimationMapping: Duplicate mapping for projectile type '{mapping.projectileType}'. Only the first one will be used.");
             }
         }
     }
 
     /**
-     * @brief Retrieves the animation name associated with a given stage name.
-     * @param stageName The name of the stage.
-     * @return The associated animation name, or null if not found.
+     * @brief Retrieves the animation data associated with a given PlayerProjectile type.
+     * @param type The type of the PlayerProjectile.
+     * @return The associated AnimationData (animationName and projectileSpawnDelay), or a default one if not found.
      */
-    public string GetAnimationName(string stageName)
+    public AnimationData GetAnimationData(PlayerProjectile.Type type)
     {
         if (m_mappingDict == null)
         {
             InitializeDictionary();
         }
 
-        if (m_mappingDict.TryGetValue(stageName, out var animationName))
+        if (m_mappingDict.TryGetValue(type, out var data))
         {
-            return animationName;
+            return data;
         }
 
-        Debug.LogWarning($"AnimationMapping: No animation name found for stage name '{stageName}'.");
-        return null;
+        Debug.LogWarning($"AnimationMapping: No animation data found for projectile type '{type}'.");
+        return default;
     }
 }
