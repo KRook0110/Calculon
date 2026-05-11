@@ -1,5 +1,4 @@
 using UnityEngine;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using TMPro;
 
@@ -26,9 +25,9 @@ public class ReactUnityCommunication : Singleton<ReactUnityCommunication>
     [DllImport("__Internal")]
     private static extern void Level(string level_name);
     [DllImport("__Internal")]
-    private static extern void Answer(bool correct);
+    private static extern void Answer(int correct);
     [DllImport("__Internal")]
-    private static extern void Finished(bool alive);
+    private static extern void Finished(int alive);
 
     protected override void Awake()
     {
