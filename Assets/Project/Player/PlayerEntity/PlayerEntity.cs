@@ -1,6 +1,6 @@
 using System;
-using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class PlayerEntity : MonoBehaviour, IDamageable
 {
@@ -27,7 +27,7 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     void Awake()
     {
         _animationHandler = GetComponentInChildren<IPlayerAniamtionHandler>();
-        Assert.NotNull(_animationHandler);
+        Assert.IsNotNull(_animationHandler);
     }
 
 
