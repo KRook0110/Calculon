@@ -18,6 +18,7 @@ public class LevelUnlocker : MonoBehaviour
     void UnlockNextLevels()
     {
         LevelData level = LevelSelector.Instance.selectedLevel;
+        if(level.nextLevels == null) return;
         foreach (var nextLevel in level.nextLevels)
         {
             Debug.Log($"Trying to unlock {nextLevel.name}");

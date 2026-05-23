@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour, IComparable<Enemy>
 
     public virtual void Damage(int amount)
     {
-        if (amount <= 0)
+        if (amount <= 0 || health <= 0)
         {
             return;
         }
@@ -63,5 +63,11 @@ public class Enemy : MonoBehaviour, IComparable<Enemy>
     public int CompareTo(Enemy other)
     {
         return GetInstanceID().CompareTo(other.GetInstanceID());
+    }
+
+    public void SetHP(int newHP)
+    {
+        maxHealth = newHP;
+        health = newHP;
     }
 }

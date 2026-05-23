@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 71391194517250061, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.3
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 71391194517250061, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.3
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 71391194517250061, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -73,12 +73,44 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: _trackingDelay
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
       propertyPath: _onlyMoveForwards
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: _idleAnimationName
+      value: Flight
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
       propertyPath: _rotationTrackingSpeed
-      value: 20
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 3017846035673032049, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: bce6dcaedc9a543619f0e0dc32398fd1, type: 2}
+    - target: {fileID: 5140453953944221789, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -4795363162621231457, guid: 6d7cd4f7505dc674c891ca8946cfd98b, type: 3}
+    - target: {fileID: 5405972244614421552, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: m_Size.x
+      value: 0.25401515
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405972244614421552, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: m_Size.y
+      value: 0.28461665
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405972244614421552, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.059521727
+      objectReference: {fileID: 0}
+    - target: {fileID: 5405972244614421552, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.010699511
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelSelector : Singleton<LevelSelector>
@@ -33,8 +32,5 @@ public class LevelSelector : Singleton<LevelSelector>
 
     public void InitializeLevel()
     {
-        FightCoordinator.Instance.InitializeFightCoordinator(new FightCoordinator.FightData {
-            enemies = selectedLevel.enemies
-        });
     }
 }

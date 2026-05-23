@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: AOEPlayerProjectile
       objectReference: {fileID: 0}
+    - target: {fileID: 7507605930318246809, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507605930318246809, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7705191066026361046, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
     m_RemovedGameObjects: []
@@ -78,8 +86,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ab330326784044949331bc2a7dbd0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AOEPlayerProjectile
+  type: 2
   target: {fileID: 0}
-  _turnSpeed: 200
+  _turnSpeed: 720
   _moveSpeed: 10
   _killDistance: 1
   _damage: 4
@@ -87,7 +96,5 @@ MonoBehaviour:
   _trackingDelay: 0
   _aoeDamage: 2
   _aoeRadius: 1.5
-  _explosionVFXPrefab: {fileID: 8530076104168724580, guid: 620d1c05887634ce581e8b56f20e12a4, type: 3}
-  _explosionColor: {r: 1, g: 0.3820755, b: 0.3820755, a: 0}
-  _explosionDuration: 0.5
-  _explosionRadius: 1.5
+  _damageDelay: 0.1
+  _explosionVFXPrefab: {fileID: 1841647885511137309, guid: a363747c782a14806acc80934e51e1d1, type: 3}

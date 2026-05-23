@@ -11,7 +11,7 @@ public class BasicPlayerProjectile : PlayerProjectile
     [SerializeField] private float _killDistance;
     [SerializeField] private int _damage;
     [SerializeField] private float _lifetime = 3f;
-    [SerializeField]private float _trackingDelay = 0.5f;
+    [SerializeField] private float _trackingDelay = 0.5f;
     private float _spawnTime;
     private Vector3 _dpos;
 
@@ -21,6 +21,12 @@ public class BasicPlayerProjectile : PlayerProjectile
     protected virtual void Start()
     {
         _spawnTime = Time.time;
+        Debug.Log($"Lmao Spawned {name}");
+    }
+
+    void OnDestroy()
+    {
+        Debug.Log($"Destroyed {name}");
     }
 
     void UpdateDPos()
@@ -34,7 +40,7 @@ public class BasicPlayerProjectile : PlayerProjectile
 
     void HandleLifetime()
     {
-        if(_spawnTime + _lifetime < Time.time)
+        if (_spawnTime + _lifetime < Time.time)
         {
             Destroy(gameObject);
         }
@@ -55,7 +61,7 @@ public class BasicPlayerProjectile : PlayerProjectile
         // move forward
         transform.position += transform.up * _moveSpeed * Time.deltaTime;
 
-        if(_trackingDelay + _spawnTime  < Time.time) HandleSidewayMovement();
+        if (_trackingDelay + _spawnTime < Time.time) HandleSidewayMovement();
     }
     void HandleSidewayMovement()
     {

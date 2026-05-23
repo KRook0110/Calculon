@@ -1,0 +1,115 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &2435700380994882472
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 929274779348976443, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 929274779348976443, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 929274779348976443, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 929274779348976443, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 929274779348976443, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 929274779348976443, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 929274779348976443, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 929274779348976443, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 929274779348976443, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 929274779348976443, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1156020185170731152, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: m_Name
+      value: Custom Boss Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 3781788741828608720, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      propertyPath: _summoningInfos.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3781788741828608720, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1156020185170731152, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6992134056838754908}
+  m_SourcePrefab: {fileID: 100100000, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+--- !u!95 &1761005080697656565 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4160482030710136669, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+  m_PrefabInstance: {fileID: 2435700380994882472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3586653851219110712 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1156020185170731152, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}
+  m_PrefabInstance: {fileID: 2435700380994882472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6992134056838754908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3586653851219110712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 40600260810f94194995b3d3e827335c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomBossEnemy
+  player: {fileID: 0}
+  playerTag: Player
+  maxHealth: 20
+  health: 20
+  _damage: 30
+  _speed: 0.3
+  _attackCooldown: 2
+  _attackKnockbackDistance: 0.3
+  _attackKnockbackDuration: 0.5
+  _onlyMoveForwards: 0
+  _rotationTrackingSpeed: 10
+  _trackingDelay: 2
+  _attackDelay: 0.2
+  _animator: {fileID: 1761005080697656565}
+  _atkAnimationName: Attack
+  _isRunningAnimationParamName: isRunning
+  _hurtAnimationName: damage
+  _hurtStunTime: 0.4
+  _hurtKnockbackDistance: 0.1
+  _hurtKnockbackDuration: 0.1
+  _idleAnimationName: Idle
+  _deathAnimationName: Death1
+  _summoningInfos: []
+  _summoningAnimationName: Jump
+  _summoningAnimationDuration: 1
+  _summoningDelay: 0.2

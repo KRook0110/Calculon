@@ -20,20 +20,43 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     private int _maxHealth;
 
     private int _currentHealth;
+    public bool isDead { get; private set; } = false;
 
-    public IPlayerAnimationHandler _animationHandler;
+    [SerializeField]
+    private Animator _animator;
+
+    [Header("Animation Names")]
+    [SerializeField] private string _idleAnimationName = "idle";
+    [SerializeField] private string _hurtAnimationName = "take_hit";
+    [SerializeField] private string _deathAnimationName = "death";
+
+    private int _idleHash;
+    private int _hurtHash;
+    private int _deathHash;
+
     public Action<PlayerDamageInfo> OnDamage;
     public Action OnDie;
 
     void Awake()
     {
-        _animationHandler = GetComponentInChildren<IPlayerAnimationHandler>();
-        Assert.IsNotNull(_animationHandler);
+        if (_animator == null)
+        {
+            _animator = GetComponentInChildren<Animator>();
+        }
+        Assert.IsNotNull(_animator);
+
+        _idleHash = Animator.StringToHash(_idleAnimationName);
+        _hurtHash = Animator.StringToHash(_hurtAnimationName);
+        _deathHash = Animator.StringToHash(_deathAnimationName);
     }
 
 
     public void Damage(int damage)
     {
+        if (isDead)
+        {
+            return;
+        }
         damage = Mathf.Min(_currentHealth, damage);
 
         _currentHealth -= damage;
@@ -45,11 +68,16 @@ public class PlayerEntity : MonoBehaviour, IDamageable
             damageTaken = damage
         });
 
+        _animator.Play(_hurtHash, 0, 0f);
+
         if (_currentHealth <= 0)
         {
+            isDead = true;
+            _animator.Play(_deathHash, 0, 0f);
             OnDie?.Invoke();
         }
     }
+
     public void Attack(Enemy enemy, GameObject projectilePrefab)
     {
         var projectileComponent = projectilePrefab.GetComponentInChildren<PlayerProjectile>();
@@ -60,8 +88,8 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         }
 
         var animData = AnimationMapping.Instance.GetAnimationData(projectileComponent.type);
-        
-        _animationHandler.StartAnimation(animData.animationName);
+
+        _animator.Play(animData.animationName, 0, 0f);
         StartCoroutine(DelayedSpawn(enemy, projectilePrefab, animData.projectileSpawnDelay));
     }
 
@@ -80,7 +108,6 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         }
         projectile.target = enemy;
     }
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

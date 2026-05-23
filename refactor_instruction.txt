@@ -1,0 +1,62 @@
+Refactor the following C# files to remove the '_' prefix from private, protected, and internal fields.
+The new naming convention should be camelCase without any prefix (e.g., '_myVariable' becomes 'myVariable').
+
+Rules:
+1. All references to the renamed variables must be updated within the same file.
+2. If renaming a variable causes a conflict with a parameter or local variable (e.g., 'this.myVariable = myVariable'), use 'this.' to disambiguate.
+3. Only target fields that start with an underscore followed by a letter (e.g., '_variableName'). Do not touch discards ('_ = ...') or other uses of underscore.
+4. Ensure the refactoring is thorough and doesn't break the code.
+
+Files to process:
+Assets/Project/UI/Health/HealthBarUI.cs
+Assets/Project/BattleInitializer/BattleInitializer.cs
+Assets/Project/GameOver/GameOverHandle.cs
+Assets/Project/TutorialHandler/TutorialHandler.cs
+Assets/Project/LevelMenu/UI/Selected Level Name/LevelNameText.cs
+Assets/Project/LevelMenu/LevelData/LevelData.cs
+Assets/Project/LevelMenu/LevelSelector/LevelSelector.cs
+Assets/Project/LevelMenu/Platform/LevelPlatform.cs
+Assets/Project/LevelMenu/LevelUnlocker/LevelUnlocker.cs
+Assets/Project/LevelMenu/LevelState/LevelState.cs
+Assets/Project/LevelMenu/Visuals/Jumping/LevelSelectionAnimationHandler.cs
+Assets/Project/LevelMenu/PlayButton/PlayButton.cs
+Assets/Project/Utils/Fraction.cs
+Assets/Project/Utils/SaveDataViewer.cs
+Assets/Project/Utils/SaveSystem.cs
+Assets/Project/Utils/UIFade.cs
+Assets/Project/Utils/Singleton.cs
+Assets/Project/Utils/ValueRange.cs
+Assets/Project/Solver/MultipleChoicesHandler.cs
+Assets/Project/Solver/ChoicesBlockerHandler.cs
+Assets/Project/Solver/MutlipleChoiceCooldown.cs
+Assets/Project/Enemy/EnemyTypes/RangedEnemy/RangedEnemyProjectile.cs
+Assets/Project/Enemy/EnemyTypes/RangedEnemy/IProjectile.cs
+Assets/Project/Enemy/EnemyTypes/RangedEnemy/RangedEnemy.cs
+Assets/Project/Enemy/EnemyTypes/SwarmEnemy/SwarmEnemySpawner.cs
+Assets/Project/Enemy/EnemyTypes/Boss/BossEnemy.cs
+Assets/Project/Enemy/EnemyTypes/BasicEnemy/BasicEnemy.cs
+Assets/Project/Enemy/EnemyTypes/PracticeTarget/PracticeTarget.cs
+Assets/Project/Enemy/Enemy.cs
+Assets/Project/FightCoordinator/FightCoordinator.cs
+Assets/Project/Communication/TestingReactUnity/Battle Scene/BattleReactHandler.cs
+Assets/Project/Communication/TestingReactUnity/Level Scene/LevelSelectionReactHandler.cs
+Assets/Project/Communication/TestingReactUnity/ReactUnityCommunication.cs
+Assets/Project/Effects/AOEVisualEffect/AOEVisualEffect.cs
+Assets/Project/QuestionGeneration/Stages/DivisionStage.cs
+Assets/Project/QuestionGeneration/Stages/AdditionStage.cs
+Assets/Project/QuestionGeneration/Stages/FractionMultilpicationStage.cs
+Assets/Project/QuestionGeneration/Stages/SubtractionStage.cs
+Assets/Project/QuestionGeneration/Stages/MultiplicationStage.cs
+Assets/Project/QuestionGeneration/Stages/FractionSubtractionStage.cs
+Assets/Project/QuestionGeneration/Stages/FractionAdditionStage.cs
+Assets/Project/QuestionGeneration/QuestionStage.cs
+Assets/Project/QuestionGeneration/QuestionGenerator.cs
+Assets/Project/Editor/ParentCenteringTool.cs
+Assets/Project/Player/ProjectileMapping/ProjectileMapping.cs
+Assets/Project/Player/AnimationMapping/AnimationMapping.cs
+Assets/Project/Player/PlayerProjectiles/MultiAttackProjectile/MultiPlayerProjectile.cs
+Assets/Project/Player/PlayerProjectiles/BasicProjectile/BasicPlayerProjectile.cs
+Assets/Project/Player/PlayerProjectiles/PlayerProjectile.cs
+Assets/Project/Player/PlayerProjectiles/AOEProjectile/AOEExplosionEffect/AOEExplosionEffectHandler.cs
+Assets/Project/Player/PlayerProjectiles/AOEProjectile/AOEPlayerProjectile.cs
+Assets/Project/Player/PlayerEntity/PlayerEntity.cs

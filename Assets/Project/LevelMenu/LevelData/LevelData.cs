@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,6 +9,8 @@ public class LevelData : ScriptableObject
     public string levelName;
     public List<LevelData> nextLevels;
     public List<string> unlockQuestionTypes;
+    public bool hasTutorial = false;
+    public bool resetLevelSelectionToDefault = false;
 
 
     [Header("Enemies")]

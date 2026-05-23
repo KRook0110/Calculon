@@ -10,11 +10,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 71391194517250061, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 71391194517250061, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 71391194517250061, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 71391194517250061, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -73,13 +77,37 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: _attackDelay
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
       propertyPath: _attackCooldown
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
       propertyPath: _knockbackDistance
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: _hurtKnockbackDistance
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: _attackKnockbackDistance
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2884551157795879995, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: _attackKnockbackDuration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3017846035673032049, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ff4a63ab3e0f8454b8e53133a229f064, type: 2}
+    - target: {fileID: 5140453953944221789, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 4723107735738678597, guid: f8b30c2afe165d645b54d500a9c30862, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

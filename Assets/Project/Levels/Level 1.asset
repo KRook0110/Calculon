@@ -18,5 +18,4 @@ MonoBehaviour:
   unlockQuestionTypes:
   - AdditionStage
   enemies:
-  - {fileID: 2023191207417578406, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
-  - {fileID: 4728416135819813670, guid: 5a9446bca1375430b8c928bcddd09394, type: 3}
+  - {fileID: 1156020185170731152, guid: 1b3bae53c29354d05974b5e2754607cf, type: 3}

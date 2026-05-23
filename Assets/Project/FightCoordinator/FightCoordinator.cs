@@ -30,23 +30,15 @@ public class FightCoordinator : Singleton<FightCoordinator>
 
     public Action OnFinish;
 
-    public void InitializeFightCoordinator(FightData fightData)
+    public void Initialize(FightData fightData)
     {
         _enemySpawns = fightData.enemies;
-    }
-
-    void Start()
-    {
-        LevelSelector.Instance.InitializeLevel();
-
-        if (_enemySpawns.Count > 0)
-        {
-            SpawnEnemy(_enemySpawns[0]);
-        }
-        else
+        if (_enemySpawns.Count <= 0)
         {
             Debug.LogError("No enemies");
+            return;
         }
+        SpawnEnemy(_enemySpawns[0]);
     }
 
     void OnEnable()
@@ -86,8 +78,26 @@ public class FightCoordinator : Singleton<FightCoordinator>
             return;
         }
 
-        var projectilePrefab = ProjectileMapping.Instance.GetProjectilePrefab(stage.name).gameObject;
-        _playerEntity.Attack(FindClosestEnemy(), projectilePrefab);
+        PlayerProjectile projectilePrefab = null;
+        if (stage != null)
+        {
+            projectilePrefab = ProjectileMapping.Instance.GetProjectilePrefab(stage.name);
+        }
+        
+        // Fallback to a default if the stage is null or mapping is missing
+        if (projectilePrefab == null)
+        {
+            // Try "Default" or just any mapping if "Default" isn't found
+            projectilePrefab = ProjectileMapping.Instance.GetProjectilePrefab("Default");
+            
+            if (projectilePrefab == null)
+            {
+                Debug.LogWarning("FightCoordinator: No projectile mapping found for stage or 'Default'. Player cannot attack.");
+                return;
+            }
+        }
+
+        _playerEntity.Attack(FindClosestEnemy(), projectilePrefab.gameObject);
     }
 
     void HandleEnemyDeath(Enemy enemy)

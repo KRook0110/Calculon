@@ -81,6 +81,7 @@ public class GameOverHandle : Singleton<GameOverHandle>
 
     public void RestartGame()
     {
+        QuestionGenerator.Instance.ResetCustomQuestions();
         SceneManager.LoadScene(_battleSceneName);
     }
     public void GoToLevelManager()

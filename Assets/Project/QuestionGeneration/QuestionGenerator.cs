@@ -21,6 +21,11 @@ public class QuestionGenerator : Singleton<QuestionGenerator>
     private List<StageInfo> _unlockedStages = new List<StageInfo>();
     [SerializeField]
     private List<StageInfo> _availableStages = new List<StageInfo>();
+    [SerializeField]
+    private QuestionStage _customGameStage;
+
+    public List<MultipleChoiceQuestion> customQuestions {private set; get;} = new List<MultipleChoiceQuestion>();
+    private int _currentCustomQuestionIndex = 0;
 
     [Header("Elo System")]
     public int currentElo {get; private set;} = 50;
@@ -100,8 +105,35 @@ public class QuestionGenerator : Singleton<QuestionGenerator>
         SaveElo();
     }
 
+    public void ClearCustomQuestions()
+    {
+        customQuestions.Clear();
+        _currentCustomQuestionIndex = 0;
+    }
+
+    public void ResetCustomQuestions()
+    {
+        _currentCustomQuestionIndex = 0;
+    }
+
+    public void AddCustomQuestion(MultipleChoiceQuestion question)
+    {
+        customQuestions.Add(question);
+    }
+
     public QuestionInfo GenerateQuestion()
     {
+        if (customQuestions != null && _currentCustomQuestionIndex < customQuestions.Count)
+        {
+            var customQuestion = customQuestions[_currentCustomQuestionIndex++];
+
+            return new QuestionInfo
+            {
+                stage = _customGameStage,
+                question = customQuestion
+            };
+        }
+
         if (_unlockedStages == null || _unlockedStages.Count == 0)
         {
             Debug.LogWarning("No stages unlocked to pick from!");

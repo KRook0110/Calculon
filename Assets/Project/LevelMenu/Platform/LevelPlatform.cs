@@ -10,13 +10,17 @@ public class LevelPlatform : MonoBehaviour, IPointerClickHandler
     [SerializeField]
     private LevelData _level;
 
+    public LevelData Level => _level;
+
     [Header("Colors")]
     [SerializeField]
-    private Color lockedColor;
+    private Color _lockedColor;
     [SerializeField]
-    private Color unlockedColor;
+    private Color _unlockedColor;
     [SerializeField]
-    private Color completedColor;
+    private Color _completedColor;
+    [Header("Level Platform")]
+    [SerializeField] public Transform mainCharacterPivot;
 
     private LevelState.State _currentState = LevelState.State.Locked;
 
@@ -25,6 +29,8 @@ public class LevelPlatform : MonoBehaviour, IPointerClickHandler
 
     private void Awake()
     {
+        if (!mainCharacterPivot) mainCharacterPivot = transform;
+
         _spriteRenderer = GetComponent<SpriteRenderer>();
         _uiImage = GetComponent<UnityEngine.UI.Image>();
     }
@@ -40,6 +46,11 @@ public class LevelPlatform : MonoBehaviour, IPointerClickHandler
     void Start()
     {
         Checks();
+
+        if (PlatformLookup.HasInstance)
+        {
+            PlatformLookup.Instance.RegisterPlatform(_level, this);
+        }
 
         _currentState = LevelState.Instance.GetLevelState(_level.levelName);
 
@@ -67,15 +78,15 @@ public class LevelPlatform : MonoBehaviour, IPointerClickHandler
         switch (_currentState)
         {
             case LevelState.State.Unlocked:
-                SetColor(unlockedColor);
+                SetColor(_unlockedColor);
                 UnlockQuestionTypes();
                 break;
             case LevelState.State.Completed:
-                SetColor(completedColor);
+                SetColor(_completedColor);
                 UnlockQuestionTypes();
                 break;
             case LevelState.State.Locked:
-                SetColor(lockedColor);
+                SetColor(_lockedColor);
                 break;
         }
 

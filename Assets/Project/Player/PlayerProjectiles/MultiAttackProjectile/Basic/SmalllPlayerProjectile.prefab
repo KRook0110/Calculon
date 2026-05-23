@@ -9,6 +9,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4130079126942939931, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130079126942939931, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4130079126942939931, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -48,21 +56,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4130079126942939931, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5642291565463617404, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
       propertyPath: m_Name
       value: SmalllPlayerProjectile
       objectReference: {fileID: 0}
     - target: {fileID: 7059411228346289700, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7059411228346289700, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.2
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7059411228346289700, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.2
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7059411228346289700, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.27
       objectReference: {fileID: 0}
     - target: {fileID: 7059411228346289700, guid: 3acd8b54e9efe473abf08fe3ca70c883, type: 3}
       propertyPath: m_ConstrainProportionsScale

@@ -142,6 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LevelPlatform
   _level: {fileID: 0}
-  lockedColor: {r: 0, g: 0, b: 0, a: 0}
-  unlockedColor: {r: 1, g: 1, b: 1, a: 1}
-  completedColor: {r: 0.61000353, g: 0.6449178, b: 0.8679245, a: 1}
+  _lockedColor: {r: 0, g: 0, b: 0, a: 0}
+  _unlockedColor: {r: 1, g: 1, b: 1, a: 1}
+  _completedColor: {r: 0.07006645, g: 1, b: 0, a: 1}
+  mainCharacterPivot: {fileID: 0}
