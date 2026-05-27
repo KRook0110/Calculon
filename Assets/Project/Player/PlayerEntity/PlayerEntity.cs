@@ -30,6 +30,11 @@ public class PlayerEntity : MonoBehaviour, IDamageable
     [SerializeField] private string _hurtAnimationName = "take_hit";
     [SerializeField] private string _deathAnimationName = "death";
 
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _attackSound;
+    [SerializeField] private AudioClip _damageSound;
+
     private int _idleHash;
     private int _hurtHash;
     private int _deathHash;
@@ -44,6 +49,15 @@ public class PlayerEntity : MonoBehaviour, IDamageable
             _animator = GetComponentInChildren<Animator>();
         }
         Assert.IsNotNull(_animator);
+
+        if (_audioSource == null)
+        {
+            _audioSource = GetComponent<AudioSource>();
+            if (_audioSource == null)
+            {
+                _audioSource = gameObject.AddComponent<AudioSource>();
+            }
+        }
 
         _idleHash = Animator.StringToHash(_idleAnimationName);
         _hurtHash = Animator.StringToHash(_hurtAnimationName);
@@ -70,6 +84,11 @@ public class PlayerEntity : MonoBehaviour, IDamageable
 
         _animator.Play(_hurtHash, 0, 0f);
 
+        if (_damageSound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(_damageSound);
+        }
+
         if (_currentHealth <= 0)
         {
             isDead = true;
@@ -90,6 +109,12 @@ public class PlayerEntity : MonoBehaviour, IDamageable
         var animData = AnimationMapping.Instance.GetAnimationData(projectileComponent.type);
 
         _animator.Play(animData.animationName, 0, 0f);
+
+        if (_attackSound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(_attackSound);
+        }
+
         StartCoroutine(DelayedSpawn(enemy, projectilePrefab, animData.projectileSpawnDelay));
     }
 

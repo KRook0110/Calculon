@@ -123,15 +123,20 @@ public class QuestionGenerator : Singleton<QuestionGenerator>
 
     public QuestionInfo GenerateQuestion()
     {
-        if (customQuestions != null && _currentCustomQuestionIndex < customQuestions.Count)
+        if (customQuestions != null && customQuestions.Count > 0)
         {
-            var customQuestion = customQuestions[_currentCustomQuestionIndex++];
-
-            return new QuestionInfo
+            if (_currentCustomQuestionIndex < customQuestions.Count)
             {
-                stage = _customGameStage,
-                question = customQuestion
-            };
+                var customQuestion = customQuestions[_currentCustomQuestionIndex++];
+
+                return new QuestionInfo
+                {
+                    stage = _customGameStage,
+                    question = customQuestion
+                };
+            }
+            
+            return null; // Finished all custom questions
         }
 
         if (_unlockedStages == null || _unlockedStages.Count == 0)

@@ -79,3 +79,8 @@ crashlytics-build.properties
 
 # Play Mode Tests
 /[Aa]ssets/[Ii]nit[Tt]est[Ss]cene*.unity*
+
+# Antigravity / Gemini
+.antigravitycli/
+.antigravity/
+.gemini/

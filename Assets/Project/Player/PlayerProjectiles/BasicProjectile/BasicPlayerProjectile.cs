@@ -22,6 +22,11 @@ public class BasicPlayerProjectile : PlayerProjectile
     {
         _spawnTime = Time.time;
         Debug.Log($"Lmao Spawned {name}");
+
+        if (spawnSound != null)
+        {
+            PlaySound2D(spawnSound, spawnSoundVolume);
+        }
     }
 
     void OnDestroy()
@@ -98,6 +103,12 @@ public class BasicPlayerProjectile : PlayerProjectile
 
         _onDeathSequence = true;
         DamageHandle();
+
+        if (hitSound != null)
+        {
+            PlaySound2D(hitSound, hitSoundVolume);
+        }
+
         OnHit?.Invoke(this);
         Destroy(gameObject);
     }

@@ -12,27 +12,20 @@ public class LevelPlatform : MonoBehaviour, IPointerClickHandler
 
     public LevelData Level => _level;
 
-    [Header("Colors")]
-    [SerializeField]
-    private Color _lockedColor;
-    [SerializeField]
-    private Color _unlockedColor;
-    [SerializeField]
-    private Color _completedColor;
     [Header("Level Platform")]
     [SerializeField] public Transform mainCharacterPivot;
 
     private LevelState.State _currentState = LevelState.State.Locked;
 
-    private SpriteRenderer _spriteRenderer;
-    private UnityEngine.UI.Image _uiImage;
+    private SpriteRenderer[] _spriteRenderers;
+    private UnityEngine.UI.Image[] _uiImages;
 
     private void Awake()
     {
         if (!mainCharacterPivot) mainCharacterPivot = transform;
 
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-        _uiImage = GetComponent<UnityEngine.UI.Image>();
+        _spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        _uiImages = GetComponentsInChildren<UnityEngine.UI.Image>();
     }
 
     public void OnPointerClick(PointerEventData eventData)
@@ -54,7 +47,7 @@ public class LevelPlatform : MonoBehaviour, IPointerClickHandler
 
         _currentState = LevelState.Instance.GetLevelState(_level.levelName);
 
-        HandleColor();
+        UpdateVisuals();
     }
 
     void Checks()
@@ -73,34 +66,23 @@ public class LevelPlatform : MonoBehaviour, IPointerClickHandler
 
     }
 
-    void HandleColor()
+    void UpdateVisuals()
     {
-        switch (_currentState)
+        bool isAccessible = _currentState != LevelState.State.Locked;
+
+        if (_spriteRenderers != null)
         {
-            case LevelState.State.Unlocked:
-                SetColor(_unlockedColor);
-                UnlockQuestionTypes();
-                break;
-            case LevelState.State.Completed:
-                SetColor(_completedColor);
-                UnlockQuestionTypes();
-                break;
-            case LevelState.State.Locked:
-                SetColor(_lockedColor);
-                break;
+            foreach (var sr in _spriteRenderers) sr.enabled = isAccessible;
         }
 
-    }
-
-    void SetColor(Color color)
-    {
-        if (_spriteRenderer != null)
+        if (_uiImages != null)
         {
-            _spriteRenderer.color = color;
+            foreach (var img in _uiImages) img.enabled = isAccessible;
         }
-        else if (_uiImage != null)
+
+        if (isAccessible)
         {
-            _uiImage.color = color;
+            UnlockQuestionTypes();
         }
     }
 

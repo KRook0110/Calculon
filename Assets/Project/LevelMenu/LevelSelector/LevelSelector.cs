@@ -6,6 +6,8 @@ public class LevelSelector : Singleton<LevelSelector>
     [Header("Default Level")]
     [SerializeField, Tooltip("Setting this value on runtime will be buggy")]
     private LevelData _selectedLevel;
+    [SerializeField]
+    private LevelData _startingSelectedLevel;
 
     public Action<LevelData> OnSelectLevel;
 
@@ -28,6 +30,7 @@ public class LevelSelector : Singleton<LevelSelector>
     {
         base.Awake();
         DontDestroyOnLoad(gameObject);
+        _selectedLevel = _startingSelectedLevel;
     }
 
     public void InitializeLevel()

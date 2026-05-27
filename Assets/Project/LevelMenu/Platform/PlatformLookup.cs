@@ -112,4 +112,53 @@ public class PlatformLookup : Singleton<PlatformLookup>
 
         return new List<LevelPlatform>();
     }
+
+    /// <summary>
+    /// Gets the horizontal boundaries (minimum and maximum X coordinates) of all registered and unlocked platforms.
+    /// Returns true if at least one platform is registered; otherwise, false.
+    /// </summary>
+    public bool TryGetPlatformBoundaries(out float minX, out float maxX)
+    {
+        minX = float.MaxValue;
+        maxX = float.MinValue;
+
+        foreach (var platform in _platformLookup.Values)
+        {
+            if (platform != null && platform.Level != null)
+            {
+                // Filter by unlocked state if LevelState is present
+                if (LevelState.HasInstance && !LevelState.Instance.IsUnlocked(platform.Level.levelName))
+                {
+                    continue;
+                }
+
+                float x = platform.transform.position.x;
+                if (x < minX) minX = x;
+                if (x > maxX) maxX = x;
+            }
+        }
+
+        if (minX == float.MaxValue || maxX == float.MinValue)
+        {
+            // Fallback: If no unlocked platforms are registered yet, use all platforms
+            foreach (var platform in _platformLookup.Values)
+            {
+                if (platform != null)
+                {
+                    float x = platform.transform.position.x;
+                    if (x < minX) minX = x;
+                    if (x > maxX) maxX = x;
+                }
+            }
+        }
+
+        if (minX == float.MaxValue || maxX == float.MinValue)
+        {
+            minX = 0f;
+            maxX = 0f;
+            return false;
+        }
+
+        return true;
+    }
 }

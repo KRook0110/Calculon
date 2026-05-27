@@ -100,7 +100,9 @@ public class MultipleChoicesHandler : Singleton<MultipleChoicesHandler>
 
         if (info == null)
         {
-            Debug.LogError("info is null");
+            _currentQuestion = null;
+            _currentStage = null;
+            RefreshUI();
             return;
         }
 

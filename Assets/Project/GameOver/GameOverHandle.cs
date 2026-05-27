@@ -86,6 +86,7 @@ public class GameOverHandle : Singleton<GameOverHandle>
     }
     public void GoToLevelManager()
     {
+        QuestionGenerator.Instance.ClearCustomQuestions();
         SceneManager.LoadScene(_levelSelectSceneName);
     }
 }

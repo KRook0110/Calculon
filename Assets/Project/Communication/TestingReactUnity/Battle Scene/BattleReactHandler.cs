@@ -37,11 +37,13 @@ public class BattleReactHandler : Singleton<BattleReactHandler>
 
     void HandleFinishAlive()
     {
+        Debug.Log("HandleFInishAlive");
         ReactUnityCommunication.Instance.SendFinished(true);
     }
 
     void  HandleFinishDead()
     {
+        Debug.Log("HandleFinishDead");
         ReactUnityCommunication.Instance.SendFinished(false);
 
     }

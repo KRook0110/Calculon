@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class LevelSelectionAnimationHandler : Singleton<LevelSelectionAnimationHandler>
 {
-    [SerializeField] private LevelPlatform startingPlatform;
     [SerializeField] private Transform character;
     [SerializeField] private Animator animator;
 
@@ -17,18 +16,33 @@ public class LevelSelectionAnimationHandler : Singleton<LevelSelectionAnimationH
     [SerializeField] private string jumpTrigger;
     [SerializeField] private float jumpHeight;
     [SerializeField] private AnimationCurve jumpCurve;
+    [SerializeField, Tooltip("The time to wait between jumps when moving across multiple platforms")]
+    private float delayBetweenJumps = 0.2f;
+
+     private LevelPlatform startingPlatform;
 
     private LevelPlatform currentPlatform;
     private LevelData _targetLevel;
     private bool _isMoving;
+    private bool _isInitialized;
 
-    void Start()
+    IEnumerator Start()
     {
+        // Wait for both a selected level and its platform to be registered
+        LevelData selected = null;
+        while (selected == null || PlatformLookup.Instance.GetPlatform(selected) == null)
+        {
+            selected = LevelSelector.Instance.selectedLevel;
+            yield return null;
+        }
+
+        startingPlatform = PlatformLookup.Instance.GetPlatform(selected);
         currentPlatform = startingPlatform;
         Vector3 targetPosition = startingPlatform.mainCharacterPivot.position;
         targetPosition.z = character.position.z;
         character.position = targetPosition;
         _targetLevel = startingPlatform.Level;
+        _isInitialized = true;
     }
 
     void OnEnable()
@@ -44,6 +58,8 @@ public class LevelSelectionAnimationHandler : Singleton<LevelSelectionAnimationH
     {
         _targetLevel = data;
         
+        if (!_isInitialized) return;
+
         if (!_isMoving)
         {
             StartCoroutine(MoveToTargetRoutine());
@@ -67,6 +83,12 @@ public class LevelSelectionAnimationHandler : Singleton<LevelSelectionAnimationH
                 LevelPlatform nextStep = path[1];
                 yield return StartCoroutine(JumpRoutine(currentPlatform.mainCharacterPivot.position, nextStep.mainCharacterPivot.position));
                 currentPlatform = nextStep;
+
+                // Add delay before the next jump if we haven't reached the target
+                if (currentPlatform.Level != _targetLevel && delayBetweenJumps > 0)
+                {
+                    yield return new WaitForSeconds(delayBetweenJumps);
+                }
             }
             else
             {
@@ -110,6 +132,72 @@ public class LevelSelectionAnimationHandler : Singleton<LevelSelectionAnimationH
             yield return null;
         }
         character.position = new Vector3(endingPosition.x, endingPosition.y, originalZ);
+    }
+
+    /// <summary>
+    /// Fades out all SpriteRenderers and UI Images on the character over the given duration.
+    /// </summary>
+    public IEnumerator FadeOutCharacterRoutine(float duration)
+    {
+        if (character == null) yield break;
+
+        SpriteRenderer[] renderers = character.GetComponentsInChildren<SpriteRenderer>();
+        UnityEngine.UI.Image[] uiImages = character.GetComponentsInChildren<UnityEngine.UI.Image>();
+
+        float[] originalSpriteAlphas = new float[renderers.Length];
+        for (int i = 0; i < renderers.Length; i++) originalSpriteAlphas[i] = renderers[i].color.a;
+
+        float[] originalUIAlphas = new float[uiImages.Length];
+        for (int i = 0; i < uiImages.Length; i++) originalUIAlphas[i] = uiImages[i].color.a;
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = elapsed / duration;
+            
+            for (int i = 0; i < renderers.Length; i++)
+            {
+                if (renderers[i] != null)
+                {
+                    Color c = renderers[i].color;
+                    c.a = Mathf.Lerp(originalSpriteAlphas[i], 0f, t);
+                    renderers[i].color = c;
+                }
+            }
+
+            for (int i = 0; i < uiImages.Length; i++)
+            {
+                if (uiImages[i] != null)
+                {
+                    Color c = uiImages[i].color;
+                    c.a = Mathf.Lerp(originalUIAlphas[i], 0f, t);
+                    uiImages[i].color = c;
+                }
+            }
+
+            yield return null;
+        }
+
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            if (renderers[i] != null)
+            {
+                Color c = renderers[i].color;
+                c.a = 0f;
+                renderers[i].color = c;
+            }
+        }
+
+        for (int i = 0; i < uiImages.Length; i++)
+        {
+            if (uiImages[i] != null)
+            {
+                Color c = uiImages[i].color;
+                c.a = 0f;
+                uiImages[i].color = c;
+            }
+        }
     }
 
 }

@@ -12,10 +12,4 @@ public class LevelSectorReseter : MonoBehaviour
         }
         
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -16,6 +16,11 @@ public class MultiPlayerProjectile : PlayerProjectile
 
     void Start()
     {
+        if (spawnSound != null)
+        {
+            PlaySound2D(spawnSound, spawnSoundVolume);
+        }
+
         if (!FightCoordinator.HasInstance)
         {
             Debug.LogError("FightCoordinator Instance not found!");
