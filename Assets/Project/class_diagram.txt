@@ -1,0 +1,1043 @@
+
+File: UI/Health/HealthBarUI.cs
+============================================================
+class HealthBarUI:
+  Variables:
+    -_playerEntity : PlayerEntity
+    -_targetUI : Transform
+  Functions:
+    -RefreshHealthBar()
+    -OnEnable()
+    -Start()
+    -Update()
+
+
+File: BattleInitializer/BattleInitializer.cs
+============================================================
+class BattleInitializer:
+  Variables:
+    -_hasInitializedBattle : bool
+  Functions:
+    -OnEnable()
+    -OnDisable()
+    -InitializeBattle()
+
+
+File: GameOver/GameOverHandle.cs
+============================================================
+class GameOverHandle:
+  Variables:
+    -_winUI : CanvasGroup
+    -_loseUI : CanvasGroup
+    -_playerEntity : PlayerEntity
+    -_battleSceneName : string
+    -_levelSelectSceneName : string
+    -hasEnded : bool
+    +OnWin : Action
+    +OnLose : Action
+  Functions:
+    -OnEnable()
+    -OnDisable()
+    -HandleWin()
+    -HandleLose()
+    +RestartGame()
+    +GoToLevelManager()
+
+
+File: TutorialHandler/TutorialHandler.cs
+============================================================
+class TutorialHandler:
+  Variables:
+    -frames : List<CanvasGroup>
+    +OnTutorialComplete : Action
+    -m_currentFrameIndex : int
+  Functions:
+    -Start()
+    -InitializeFrames()
+    +NextFrame()
+    -UpdateFrameVisibility()
+    -CompleteTutorial()
+
+
+File: LevelMenu/UI/Selected Level Name/LevelNameText.cs
+============================================================
+class LevelNameText:
+  Variables:
+    -_text : TextMeshProUGUI
+  Functions:
+    -Awake()
+    -Start()
+    -UpdateLevelText()
+    -OnEnable()
+    -OnDisable()
+
+
+File: LevelMenu/LevelData/LevelData.cs
+============================================================
+class LevelData:
+  Variables:
+    +levelName : string
+    +nextLevels : List<LevelData>
+    +unlockQuestionTypes : List<string>
+    +hasTutorial : bool
+    +resetLevelSelectionToDefault : bool
+    +enemies : List<GameObject>
+
+
+File: LevelMenu/LevelSelector/LevelSectorReseter.cs
+============================================================
+class LevelSectorReseter:
+  Variables:
+    +fallbackLevel : LevelData
+  Functions:
+    -Start()
+
+
+File: LevelMenu/LevelSelector/LevelSelector.cs
+============================================================
+class LevelSelector:
+  Variables:
+    -_selectedLevel : LevelData
+    -_startingSelectedLevel : LevelData
+    +OnSelectLevel : Action<LevelData>
+    +selectedLevel : LevelData
+  Functions:
+    -Awake()
+    +InitializeLevel()
+
+
+File: LevelMenu/Platform/LevelPlatform.cs
+============================================================
+class LevelPlatform:
+  Variables:
+    -_level : LevelData
+    +Level : LevelData
+    +mainCharacterPivot : Transform
+    -_currentState : LevelState.State
+    -_spriteRenderers : SpriteRenderer
+    -_uiImages : UnityEngine.UI.Image
+  Functions:
+    -Awake()
+    +OnPointerClick()
+    -Start()
+    -Checks()
+    -UpdateVisuals()
+    -UnlockQuestionTypes()
+
+
+File: LevelMenu/Platform/PlatformLookup.cs
+============================================================
+class PlatformLookup:
+  Variables:
+    -_platformLookup : Dictionary<LevelData, LevelPlatform>
+    -_previousLevels : Dictionary<LevelData, List<LevelData>>
+  Functions:
+    +RegisterPlatform()
+    +GetPlatform()
+    +GetPath()
+    +TryGetPlatformBoundaries()
+
+
+File: LevelMenu/LevelUnlocker/LevelUnlocker.cs
+============================================================
+class LevelUnlocker:
+  Functions:
+    -OnEnable()
+    -OnDisable()
+    -UnlockNextLevels()
+
+
+File: LevelMenu/LevelState/LevelState.cs
+============================================================
+class LevelState:
+  Variables:
+    -_initialUnlockedLevels : LevelData
+    -_unlockedLevels : SortedSet<string>
+    -_completedLevels : SortedSet<string>
+    +OnLevelUnlocked : Action<string>
+    +OnLevelCompleted : Action<string>
+  Functions:
+    -Awake()
+    -DebugUnlockedLevels()
+    -DebugCompletedLevels()
+    -UnlockInitialLevels()
+    -LoadData()
+    -SaveData()
+    -OnDestroy()
+    +UnlockLevel()
+    +GetLevelState()
+    +IsUnlocked()
+    +CompleteLevel()
+    +IsCompleted()
+
+
+File: LevelMenu/Visuals/Jumping/LevelSelectionAnimationHandler.cs
+============================================================
+class LevelSelectionAnimationHandler:
+  Variables:
+    -character : Transform
+    -animator : Animator
+    -totalDuration : float
+    -animationReferenceDuration : float
+    -jumpTrigger : string
+    -jumpHeight : float
+    -jumpCurve : AnimationCurve
+    -delayBetweenJumps : float
+    -startingPlatform : LevelPlatform
+    -currentPlatform : LevelPlatform
+    -_targetLevel : LevelData
+    -_isMoving : bool
+    -_isInitialized : bool
+  Functions:
+    -Start()
+    -OnEnable()
+    -OnDisable()
+    -OnSelectedLevelHandle()
+    -MoveToTargetRoutine()
+    -JumpRoutine()
+    +FadeOutCharacterRoutine()
+
+
+File: LevelMenu/PlayButton/PlayButton.cs
+============================================================
+class PlayButton:
+  Variables:
+    -_sceneName : string
+    -_clickSound : AudioClip
+    -_transitionDelay : float
+    -_buttonRef : Button
+    -_canvasGroup : CanvasGroup
+  Functions:
+    -Awake()
+    -OnEnable()
+    -OnDisable()
+    -UpdateVisuals()
+    -HandleButtonClick()
+    -PlaySoundAndLoadScene()
+
+
+File: Utils/ActivationDebugger.cs
+============================================================
+class ActivationDebugger:
+  Functions:
+    -OnEnable()
+    -OnDisable()
+    -Awake()
+
+
+File: Utils/Fraction.cs
+============================================================
+struct Fraction:
+  Variables:
+    +Numerator : int
+    +Denominator : int
+    +operator : bool
+    +! : bool operator
+  Functions:
+    +Fraction()
+    +Add()
+    +Subtract()
+    +Multiply()
+    +Simplify()
+    -GetGCD()
+    +ToString()
+    +Equals()
+    +GetHashCode()
+
+
+File: Utils/ParallaxLayer.cs
+============================================================
+class ParallaxLayer:
+  Variables:
+    -parallaxEffect : float
+    -infiniteScroll : bool
+    -_length : float
+    -_startPos : float
+    -_cam : Transform
+  Functions:
+    -Start()
+    -CreateClones()
+    -CopySpriteRenderer()
+    -LateUpdate()
+
+
+File: Utils/SaveDataViewer.cs
+============================================================
+class SaveDataViewer:
+  Variables:
+    -_savePath : string
+    -_data : GameSaveData
+  Functions:
+    -OnValidate()
+    -Awake()
+    +RefreshData()
+    +SaveToDisk()
+    +OpenSaveFolder()
+    +ClearSaveData()
+
+
+File: Utils/SaveSystem.cs
+============================================================
+class GameSaveData:
+  Variables:
+    +unlockedLevels : List<string>
+    +completedLevels : List<string>
+    +currentElo : int
+
+class SaveSystem:
+  Variables:
+    +SavePath : string
+  Functions:
+    +Save()
+    +Load()
+
+
+File: Utils/Singleton.cs
+============================================================
+class Singleton<T>:
+  Variables:
+    -m_instance : T
+    +Instance : T
+    +HasInstance : bool
+  Functions:
+    -Awake()
+    -OnDestroy()
+
+
+File: Utils/SmoothCameraScroller.cs
+============================================================
+class SmoothCameraScroller:
+  Variables:
+    -buttonSpeed : float
+    -scrollWheelSensitivity : float
+    -smoothTime : float
+    -minX : float
+    -maxX : float
+    -_targetX : float
+    -_currentVelocity : float
+    -_horizontalInput : float
+    -_hasCentredInitial : bool
+  Functions:
+    -Start()
+    +OnScrollInput()
+    -Update()
+
+
+File: Utils/UIFade.cs
+============================================================
+class UIFade:
+  Functions:
+    +Fade()
+
+
+File: Utils/ValueRange.cs
+============================================================
+struct ValueRange:
+  Variables:
+    +min : float
+    +max : float
+  Functions:
+    +ValueRange()
+    +Random()
+
+
+File: Solver/ChoicesBlockerHandler.cs
+============================================================
+class ChoicesBlockerHandler:
+  Variables:
+    -blockerUI : GameObject
+    -_objectsBlocking : HashSet<GameObject>
+    +blocked : bool
+  Functions:
+    +Block()
+    +IsBlocking()
+    +UnBlock()
+    -RefreshBlock()
+    -Start()
+    -HandleCooldownBlocking()
+    -HandleCooldownUnBlocking()
+    -OnEnable()
+    -OnDisable()
+
+
+File: Solver/MultipleChoicesHandler.cs
+============================================================
+class ChoiceData:
+  Variables:
+    +isCorrect : bool
+    +choiceText : string
+
+class MultipleChoiceQuestion:
+  Variables:
+    +questionText : string
+    +choices : ChoiceData
+  Functions:
+    +CreateQuestion()
+
+class MultipleChoicesHandler:
+  Variables:
+    -questionTextObject : TextMeshProUGUI
+    -choiceObjects : GameObject
+    -_choiceTexts : List<TextMeshProUGUI>
+    -_choiceButtons : List<Button>
+    -_currentQuestion : MultipleChoiceQuestion
+    -_currentStage : QuestionStage
+    +OnAnswer : Action<bool, QuestionStage>
+    +OnFinish : Action
+  Functions:
+    -Start()
+    +Answer()
+    -NextQuestion()
+    -RefreshUI()
+    -RefreshBlocker()
+    -RefreshQuestion()
+    -RefreshChoices()
+
+
+File: Solver/MutlipleChoiceCooldown.cs
+============================================================
+class MutlipleChoiceCooldown:
+  Variables:
+    -wrongAnswerCooldown : float
+    -cooldowns : SortedSet<float>
+    +OnUsable : Action
+    +OnCooldown : Action
+  Functions:
+    +AddCooldown()
+    -WrongAnswerHandle()
+    -OnEnable()
+    -OnDisable()
+    -Update()
+    -RemovePastCooldowns()
+
+
+File: Enemy/Enemy.cs
+============================================================
+interface IDamageable:
+  Functions:
+    +Damage()
+
+class Enemy:
+  Variables:
+    +player : Transform
+    -playerTag : string
+    -maxHealth : int
+    -health : int
+    +OnDeath : Action<Enemy>
+    +OnDamaged : Action<DamageContext>
+  Functions:
+    +Kill()
+    +Damage()
+    +CompareTo()
+    +SetHP()
+
+struct DamageContext:
+  Variables:
+    +remainingHealth : float
+    +damageDone : int
+
+
+File: Enemy/EnemyTypes/RangedEnemy/IProjectile.cs
+============================================================
+interface IProjectile:
+  Variables:
+    +Target : Transform
+    +OnHit : Action<GameObject>
+
+
+File: Enemy/EnemyTypes/RangedEnemy/RangedEnemy.cs
+============================================================
+class RangedEnemy:
+  Variables:
+    -_damage : int
+    -_movementSpeed : float
+    -_attackRange : float
+    -_attackInterval : float
+    -_attackBurstCount : float
+    -_attackBurstInterval : float
+    -_spread : float
+    -projectile : GameObject
+    -projectileOrigin : Transform
+    -_isAttacking : bool
+    -_lastAttack : float
+  Functions:
+    -Update()
+    -AttackSequence()
+
+
+File: Enemy/EnemyTypes/RangedEnemy/RangedEnemyProjectile.cs
+============================================================
+class RangedEnemyProjectile:
+  Variables:
+    +Target : Transform
+    -_damage : int
+    -_projectileLifeTime : float
+    -_speed : float
+    -_turnSpeed : float
+    -_hitDistance : float
+    +OnHit : Action<GameObject>
+    -_lifeTime : float
+  Functions:
+    -Update()
+
+
+File: Enemy/EnemyTypes/SwarmEnemy/SwarmEnemySpawner.cs
+============================================================
+class SwarmEnemySpawner:
+  Variables:
+    -_enemySpawnType : GameObject
+    -_spawnAmount : int
+    -_rotationRange : ValueRange
+  Functions:
+    -Start()
+    -SpawnEnemy()
+
+
+File: Enemy/EnemyTypes/Boss/BossEnemy.cs
+============================================================
+class BossEnemy:
+  Variables:
+    -_summoningInfos : SummoningInfo
+    -_summoningAnimationName : string
+    -_summoningAnimationDuration : float
+    -_summoningDelay : float
+    -_summoningAnimationNameHash : int
+    -_isSummoning : bool
+  Functions:
+    -Awake()
+    -Start()
+    -IsAllowedToMove()
+    -Summoning()
+
+class SummoningInfo:
+  Variables:
+    +delay : float
+    +summoningPrefab : Enemy
+    +amount : int
+
+
+File: Enemy/EnemyTypes/Boss/CustomBossEnemy.cs
+============================================================
+class CustomBossEnemy:
+  Functions:
+    -Start()
+
+
+File: Enemy/EnemyTypes/BasicEnemy/BasicEnemy.cs
+============================================================
+class BasicEnemy:
+  Variables:
+    -_damage : int
+    -_speed : float
+    -_attackCooldown : float
+    -_attackKnockbackDistance : float
+    -_attackKnockbackDuration : float
+    -_onlyMoveForwards : bool
+    -_rotationTrackingSpeed : float
+    -_trackingDelay : float
+    -_attackDelay : float
+    -_animator : Animator
+    -_atkAnimationName : string
+    -_isRunningAnimationParamName : string
+    -_hurtAnimationName : string
+    -_hurtStunTime : float
+    -_hurtKnockbackDistance : float
+    -_hurtKnockbackDuration : float
+    -_idleAnimationName : string
+    -_deathAnimationName : string
+    -_lastAttack : float
+    -_allowMove : bool
+    -_spawnTime : float
+    -_isHurting : bool
+    -_touchedEntity : IDamageable
+    -_isDead : bool
+    -_isRunningAnimationParamHash : int
+    -_atkAnimationNameHash : int
+    -_hurtAnimationNameHash : int
+    -_idleAnimationNameHash : int
+    -_deathAnimationNameHash : int
+    -playerEntity : PlayerEntity
+  Functions:
+    -Awake()
+    -Start()
+    -IsAllowedToMove()
+    -Update()
+    -HandleHurt()
+    +Kill()
+    -DeathRoutine()
+    -HurtRoutine()
+    -OnEnable()
+    -OnDisable()
+    -MoveForward()
+    -RotationTracking()
+    -MoveDirectly()
+    -Attack()
+    -AttackRoutine()
+    -SelfKnockbackRoutine()
+    -HandleCollisionEnter()
+    -HandleCollisionExit()
+    -OnCollisionEnter2D()
+    -OnCollisionExit2D()
+    -OnTriggerEnter2D()
+    -OnTriggerExit2D()
+
+
+File: Enemy/EnemyTypes/PracticeTarget/PracticeTarget.cs
+============================================================
+class PracticeTarget:
+
+
+File: FightCoordinator/FightCoordinator.cs
+============================================================
+class FightCoordinator:
+  Variables:
+    -_multipleChoicesHandler : MultipleChoicesHandler
+    -_playerEntity : PlayerEntity
+    -_spawnOrigin : Transform
+    -_playerProjectilePrefab : GameObject
+    +_enemySpawns : List<GameObject>
+    +aliveEnemies : SortedSet<Enemy>
+    -_currentEnemyIndex : int
+    +OnFinish : Action
+  Functions:
+    +Initialize()
+    -OnEnable()
+    -OnDisable()
+    -FindClosestEnemy()
+    -AnswerHandle()
+    -HandleEnemyDeath()
+    -SpawnNextEnemy()
+    +SpawnEnemy()
+    +SpawnEnemy()
+
+class FightData:
+  Variables:
+    +enemies : List<GameObject>
+
+
+File: Communication/TestingReactUnity/ReactUnityCommunication.cs
+============================================================
+class CustomChoice:
+  Variables:
+    +text : string
+    +is_correct : bool
+
+class CustomQuestion:
+  Variables:
+    +question : string
+    +choices : CustomChoice
+
+class InitialGameData:
+  Variables:
+    +all_levels_unlocked : string
+    +current_elo : int
+    +questions : CustomQuestion
+
+class FinalizedGameData:
+  Variables:
+    +elo_gained : int
+    +new_levels_unlocked : string
+
+class ReactUnityCommunication:
+  Variables:
+    +_latestMessage : TextMeshProUGUI
+    -customEnemyPrefab : GameObject
+  Functions:
+    -Init()
+    -Level()
+    -Answer()
+    -Finished()
+    -Awake()
+    +GiveInitialdata()
+    +Finalized()
+    +TestGiveInitialData()
+    +SendInit()
+    +SendLevel()
+    +SendAnswer()
+    +SendFinished()
+
+
+File: Communication/TestingReactUnity/Battle Scene/BattleReactHandler.cs
+============================================================
+class BattleReactHandler:
+  Variables:
+    -_player : PlayerEntity
+  Functions:
+    -Start()
+    -OnEnable()
+    -OnDisable()
+    -HandleAnswers()
+    -HandleFinishAlive()
+    -HandleFinishDead()
+
+
+File: Communication/TestingReactUnity/Level Scene/LevelSelectionReactHandler.cs
+============================================================
+class LevelSelectionReactHandler:
+  Functions:
+    -Start()
+
+
+File: Effects/AOEVisualEffect/AOEVisualEffect.cs
+============================================================
+class AOEVisualEffect:
+  Variables:
+    -_spriteRenderer : SpriteRenderer
+  Functions:
+    -Awake()
+    +Initialize()
+    -AnimateExplosion()
+
+
+File: QuestionGeneration/QuestionGenerator.cs
+============================================================
+class QuestionGenerator:
+  Variables:
+    -_unlockedStages : List<StageInfo>
+    -_availableStages : List<StageInfo>
+    -_customGameStage : QuestionStage
+    +customQuestions : List<MultipleChoiceQuestion>
+    -_currentCustomQuestionIndex : int
+    +currentElo : int
+    -eloGain : int
+    -eloLoss : int
+  Functions:
+    -Awake()
+    -LoadElo()
+    -SaveElo()
+    +EnableQuestionType()
+    +UpdateElo()
+    +SetElo()
+    +ClearCustomQuestions()
+    +ResetCustomQuestions()
+    +AddCustomQuestion()
+    +GenerateQuestion()
+    -GetRandomStage()
+
+class StageInfo:
+  Variables:
+    +chance : float
+    +stage : QuestionStage
+
+class QuestionInfo:
+  Variables:
+    +stage : QuestionStage
+    +question : MultipleChoiceQuestion
+
+
+File: QuestionGeneration/QuestionStage.cs
+============================================================
+class QuestionStage:
+  Variables:
+    +name : string
+    +currentElo : int
+  Functions:
+    +GenerateQuestion()
+
+
+File: QuestionGeneration/Stages/AdditionStage.cs
+============================================================
+class AdditionStage:
+  Variables:
+    -offsets : int
+    -Levels : AdditionLevel
+  Functions:
+    -OnValidate()
+    +GenerateQuestion()
+    -GenerateChoiceValues()
+
+struct AdditionLevel:
+  Variables:
+    +minElo : int
+    +minA : int
+    +maxA : int
+    +minB : int
+    +maxB : int
+  Functions:
+    +AdditionLevel()
+
+
+File: QuestionGeneration/Stages/CustomStage.cs
+============================================================
+class CustomStage:
+  Functions:
+    -OnValidate()
+    +GenerateQuestion()
+
+
+File: QuestionGeneration/Stages/DivisionStage.cs
+============================================================
+class DivisionStage:
+  Variables:
+    -Levels : DivisionLevel
+  Functions:
+    -OnValidate()
+    +GenerateQuestion()
+    -GenerateChoiceValues()
+
+struct DivisionLevel:
+  Variables:
+    +minElo : int
+    +divisorPool : int
+    +quotientPool : int
+  Functions:
+    +DivisionLevel()
+
+
+File: QuestionGeneration/Stages/FractionAdditionStage.cs
+============================================================
+class FractionAdditionStage:
+  Variables:
+    -Levels : FractionLevel
+  Functions:
+    -OnValidate()
+    +GenerateQuestion()
+    -GenerateChoices()
+
+struct FractionLevel:
+  Variables:
+    +minElo : int
+    +maxNumerator : int
+    +maxDenominator : int
+    +forceSameDenominator : bool
+  Functions:
+    +FractionLevel()
+
+
+File: QuestionGeneration/Stages/FractionMultilpicationStage.cs
+============================================================
+class FractionMultilpicationStage:
+  Variables:
+    -Levels : FractionMultiplicationLevel
+  Functions:
+    -OnValidate()
+    +GenerateQuestion()
+    -GenerateChoices()
+
+struct FractionMultiplicationLevel:
+  Variables:
+    +minElo : int
+    +numeratorPool : int
+    +denominatorPool : int
+  Functions:
+    +FractionMultiplicationLevel()
+
+
+File: QuestionGeneration/Stages/FractionSubtractionStage.cs
+============================================================
+class FractionSubtractionStage:
+  Variables:
+    -Levels : FractionLevel
+  Functions:
+    -OnValidate()
+    +GenerateQuestion()
+    -GenerateChoices()
+
+struct FractionLevel:
+  Variables:
+    +minElo : int
+    +maxNumerator : int
+    +maxDenominator : int
+    +forceSameDenominator : bool
+  Functions:
+    +FractionLevel()
+
+
+File: QuestionGeneration/Stages/MultiplicationStage.cs
+============================================================
+class MultiplicationStage:
+  Variables:
+    -Levels : MultiplicationLevel
+  Functions:
+    -OnValidate()
+    +GenerateQuestion()
+    -GenerateChoiceValues()
+
+struct MultiplicationLevel:
+  Variables:
+    +minElo : int
+    +poolA : int
+    +poolB : int
+  Functions:
+    +MultiplicationLevel()
+
+
+File: QuestionGeneration/Stages/SubtractionStage.cs
+============================================================
+class SubtractionStage:
+  Variables:
+    -offsets : int
+    -Levels : SubtractionLevel
+  Functions:
+    -OnValidate()
+    +GenerateQuestion()
+    -GenerateChoiceValues()
+
+struct SubtractionLevel:
+  Variables:
+    +minElo : int
+    +minA : int
+    +maxA : int
+    +minB : int
+    +maxB : int
+  Functions:
+    +SubtractionLevel()
+
+
+File: Editor/ParentCenteringTool.cs
+============================================================
+class ParentCenteringTool:
+  Functions:
+    +CenterParentBetweenChildren()
+    +ValidateCenterParentBetweenChildren()
+
+
+File: Player/ProjectileMapping/ProjectileMapping.cs
+============================================================
+class ProjectileMapping:
+  Variables:
+    -mappings : List<Mapping>
+    -m_mappingDict : Dictionary<string, PlayerProjectile>
+  Functions:
+    -Awake()
+    -InitializeDictionary()
+    +GetProjectilePrefab()
+
+struct Mapping:
+  Variables:
+    +stageName : string
+    +projectilePrefab : PlayerProjectile
+
+
+File: Player/AnimationMapping/AnimationMapping.cs
+============================================================
+class AnimationMapping:
+  Variables:
+    -mappings : List<Mapping>
+    -m_mappingDict : Dictionary<PlayerProjectile.Type, AnimationData>
+  Functions:
+    -Awake()
+    -InitializeDictionary()
+    +GetAnimationData()
+
+struct AnimationData:
+  Variables:
+    +animationName : string
+    +projectileSpawnDelay : float
+
+struct Mapping:
+  Variables:
+    +projectileType : PlayerProjectile.Type
+    +animationData : AnimationData
+
+
+File: Player/PlayerProjectiles/PlayerProjectile.cs
+============================================================
+class PlayerProjectile:
+  Variables:
+    +type : Type
+    +target : Enemy
+    +OnHit : Action<PlayerProjectile>
+    -spawnSound : AudioClip
+    -spawnSoundVolume : float
+    -hitSound : AudioClip
+    -hitSoundVolume : float
+  Functions:
+    -PlaySound2D()
+
+
+File: Player/PlayerProjectiles/MultiAttackProjectile/MultiPlayerProjectile.cs
+============================================================
+class MultiPlayerProjectile:
+  Variables:
+    -_amount : int
+    -_projectile : PlayerProjectile
+    -_rotationRange : ValueRange
+  Functions:
+    -Start()
+    -SpawnProjectile()
+
+
+File: Player/PlayerProjectiles/BasicProjectile/BasicPlayerProjectile.cs
+============================================================
+class BasicPlayerProjectile:
+  Variables:
+    -_turnSpeed : float
+    -_moveSpeed : float
+    -_killDistance : float
+    -_damage : int
+    -_lifetime : float
+    -_trackingDelay : float
+    -_spawnTime : float
+    -_dpos : Vector3
+    -_onDeathSequence : bool
+  Functions:
+    -Start()
+    -OnDestroy()
+    -UpdateDPos()
+    -HandleLifetime()
+    -Update()
+    -HandleMovement()
+    -HandleSidewayMovement()
+    -HandleEnemyDetection()
+    -ProjectileDeathSequence()
+    +DamageHandle()
+
+
+File: Player/PlayerProjectiles/AOEProjectile/AOEPlayerProjectile.cs
+============================================================
+class AOEPlayerProjectile:
+  Variables:
+    -_aoeDamage : int
+    -_aoeRadius : float
+    -_damageDelay : float
+    -_explosionVFXPrefab : GameObject
+  Functions:
+    +DamageHandle()
+    -DamageDelayRoutine()
+    -SpawnAOEVFX()
+
+
+File: Player/PlayerProjectiles/AOEProjectile/AOEExplosionEffect/AOEExplosionEffectHandler.cs
+============================================================
+class AOEExplosionEffectHandler:
+  Variables:
+    -_destroyTime : float
+  Functions:
+    -Start()
+    -DestroyRoutine()
+
+
+File: Player/PlayerEntity/PlayerEntity.cs
+============================================================
+class PlayerEntity:
+  Variables:
+    -projectileOrigin : Transform
+    -_maxHealth : int
+    -_currentHealth : int
+    +isDead : bool
+    -_animator : Animator
+    -_idleAnimationName : string
+    -_hurtAnimationName : string
+    -_deathAnimationName : string
+    -_audioSource : AudioSource
+    -_attackSound : AudioClip
+    -_damageSound : AudioClip
+    -_idleHash : int
+    -_hurtHash : int
+    -_deathHash : int
+    +OnDamage : Action<PlayerDamageInfo>
+    +OnDie : Action
+  Functions:
+    -Awake()
+    +Damage()
+    +Attack()
+    -DelayedSpawn()
+    -Start()
+
+struct PlayerDamageInfo:
+  Variables:
+    +maxHealth : int
+    +remainingHealth : int
+    +damageTaken : int
+
