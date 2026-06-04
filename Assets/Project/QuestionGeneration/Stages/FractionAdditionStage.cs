@@ -50,7 +50,7 @@ public class FractionAdditionStage : QuestionStage
 
         int d1 = UnityEngine.Random.Range(2, level.maxDenominator + 1);
         int d2 = level.forceSameDenominator ? d1 : UnityEngine.Random.Range(2, level.maxDenominator + 1);
-        
+
         int n1 = UnityEngine.Random.Range(1, Math.Min(d1, level.maxNumerator + 1));
         int n2 = UnityEngine.Random.Range(1, Math.Min(d2, level.maxNumerator + 1));
 
@@ -88,12 +88,12 @@ public class FractionAdditionStage : QuestionStage
             attempts++;
             int nOffset = UnityEngine.Random.Range(-2, 3);
             int dOffset = UnityEngine.Random.Range(-2, 3);
-            
+
             if (nOffset == 0 && dOffset == 0) continue;
 
             int newN = Math.Max(1, correct.Numerator + nOffset);
             int newD = Math.Max(2, correct.Denominator + dOffset);
-            
+
             Fraction variant = new Fraction(newN, newD).Simplify();
             if (!choices.Contains(variant))
             {

@@ -35,7 +35,7 @@ public class PlayButton : MonoBehaviour
     void OnDisable()
     {
         _buttonRef.onClick.RemoveListener(HandleButtonClick);
-        
+
         if (LevelSelector.HasInstance)
         {
             LevelSelector.Instance.OnSelectLevel -= UpdateVisuals;
@@ -97,5 +97,5 @@ public class PlayButton : MonoBehaviour
 
         SceneManager.LoadScene(_sceneName);
     }
-    
+
 }

@@ -1,5 +1,5 @@
 
-File: UI/Health/HealthBarUI.cs
+File: UI/Health/HealthBarUI.cs™ v
 ============================================================
 class HealthBarUI:
   Variables:
@@ -12,7 +12,7 @@ class HealthBarUI:
     -Update()
 
 
-File: BattleInitializer/BattleInitializer.cs
+File: BattleInitializer/BattleInitializer.cs v
 ============================================================
 class BattleInitializer:
   Variables:
@@ -23,7 +23,7 @@ class BattleInitializer:
     -InitializeBattle()
 
 
-File: GameOver/GameOverHandle.cs
+File: GameOver/GameOverHandle.cs v
 ============================================================
 class GameOverHandle:
   Variables:
@@ -44,7 +44,7 @@ class GameOverHandle:
     +GoToLevelManager()
 
 
-File: TutorialHandler/TutorialHandler.cs
+File: TutorialHandler/TutorialHandler.cs v
 ============================================================
 class TutorialHandler:
   Variables:
@@ -59,7 +59,7 @@ class TutorialHandler:
     -CompleteTutorial()
 
 
-File: LevelMenu/UI/Selected Level Name/LevelNameText.cs
+File: LevelMenu/UI/Selected Level Name/LevelNameText.cs v
 ============================================================
 class LevelNameText:
   Variables:
@@ -72,7 +72,7 @@ class LevelNameText:
     -OnDisable()
 
 
-File: LevelMenu/LevelData/LevelData.cs
+File: LevelMenu/LevelData/LevelData.cs v
 ============================================================
 class LevelData:
   Variables:
@@ -84,7 +84,7 @@ class LevelData:
     +enemies : List<GameObject>
 
 
-File: LevelMenu/LevelSelector/LevelSectorReseter.cs
+File: LevelMenu/LevelSelector/LevelSectorReseter.cs v 
 ============================================================
 class LevelSectorReseter:
   Variables:
@@ -93,7 +93,7 @@ class LevelSectorReseter:
     -Start()
 
 
-File: LevelMenu/LevelSelector/LevelSelector.cs
+File: LevelMenu/LevelSelector/LevelSelector.cs v
 ============================================================
 class LevelSelector:
   Variables:
@@ -106,7 +106,7 @@ class LevelSelector:
     +InitializeLevel()
 
 
-File: LevelMenu/Platform/LevelPlatform.cs
+File: LevelMenu/Platform/LevelPlatform.cs v
 ============================================================
 class LevelPlatform:
   Variables:
@@ -125,7 +125,7 @@ class LevelPlatform:
     -UnlockQuestionTypes()
 
 
-File: LevelMenu/Platform/PlatformLookup.cs
+File: LevelMenu/Platform/PlatformLookup.cs v
 ============================================================
 class PlatformLookup:
   Variables:
@@ -138,7 +138,7 @@ class PlatformLookup:
     +TryGetPlatformBoundaries()
 
 
-File: LevelMenu/LevelUnlocker/LevelUnlocker.cs
+File: LevelMenu/LevelUnlocker/LevelUnlocker.cs v
 ============================================================
 class LevelUnlocker:
   Functions:
@@ -147,7 +147,7 @@ class LevelUnlocker:
     -UnlockNextLevels()
 
 
-File: LevelMenu/LevelState/LevelState.cs
+File: LevelMenu/LevelState/LevelState.cs v
 ============================================================
 class LevelState:
   Variables:
@@ -171,7 +171,7 @@ class LevelState:
     +IsCompleted()
 
 
-File: LevelMenu/Visuals/Jumping/LevelSelectionAnimationHandler.cs
+File: LevelMenu/Visuals/Jumping/LevelSelectionAnimationHandler.cs v
 ============================================================
 class LevelSelectionAnimationHandler:
   Variables:
@@ -198,7 +198,7 @@ class LevelSelectionAnimationHandler:
     +FadeOutCharacterRoutine()
 
 
-File: LevelMenu/PlayButton/PlayButton.cs
+File: LevelMenu/PlayButton/PlayButton.cs v
 ============================================================
 class PlayButton:
   Variables:
@@ -216,7 +216,7 @@ class PlayButton:
     -PlaySoundAndLoadScene()
 
 
-File: Utils/ActivationDebugger.cs
+File: Utils/ActivationDebugger.cs 
 ============================================================
 class ActivationDebugger:
   Functions:
@@ -225,7 +225,7 @@ class ActivationDebugger:
     -Awake()
 
 
-File: Utils/Fraction.cs
+File: Utils/Fraction.cs v
 ============================================================
 struct Fraction:
   Variables:
@@ -245,7 +245,7 @@ struct Fraction:
     +GetHashCode()
 
 
-File: Utils/ParallaxLayer.cs
+File: Utils/ParallaxLayer.cs v
 ============================================================
 class ParallaxLayer:
   Variables:
@@ -276,7 +276,7 @@ class SaveDataViewer:
     +ClearSaveData()
 
 
-File: Utils/SaveSystem.cs
+File: Utils/SaveSystem.cs v
 ============================================================
 class GameSaveData:
   Variables:
@@ -304,7 +304,7 @@ class Singleton<T>:
     -OnDestroy()
 
 
-File: Utils/SmoothCameraScroller.cs
+File: Utils/SmoothCameraScroller.cs v
 ============================================================
 class SmoothCameraScroller:
   Variables:
@@ -323,14 +323,14 @@ class SmoothCameraScroller:
     -Update()
 
 
-File: Utils/UIFade.cs
+File: Utils/UIFade.cs v
 ============================================================
 class UIFade:
   Functions:
     +Fade()
 
 
-File: Utils/ValueRange.cs
+File: Utils/ValueRange.cs v
 ============================================================
 struct ValueRange:
   Variables:
@@ -341,7 +341,7 @@ struct ValueRange:
     +Random()
 
 
-File: Solver/ChoicesBlockerHandler.cs
+File: Solver/ChoicesBlockerHandler.cs v
 ============================================================
 class ChoicesBlockerHandler:
   Variables:
@@ -360,7 +360,7 @@ class ChoicesBlockerHandler:
     -OnDisable()
 
 
-File: Solver/MultipleChoicesHandler.cs
+File: Solver/MultipleChoicesHandler.cs v
 ============================================================
 class ChoiceData:
   Variables:
@@ -394,7 +394,7 @@ class MultipleChoicesHandler:
     -RefreshChoices()
 
 
-File: Solver/MutlipleChoiceCooldown.cs
+File: Solver/MutlipleChoiceCooldown.cs v 
 ============================================================
 class MutlipleChoiceCooldown:
   Variables:
@@ -410,8 +410,8 @@ class MutlipleChoiceCooldown:
     -Update()
     -RemovePastCooldowns()
 
-
-File: Enemy/Enemy.cs
+ 
+File: Enemy/Enemy.cs v
 ============================================================
 interface IDamageable:
   Functions:
@@ -437,7 +437,7 @@ struct DamageContext:
     +damageDone : int
 
 
-File: Enemy/EnemyTypes/RangedEnemy/IProjectile.cs
+File: Enemy/EnemyTypes/RangedEnemy/IProjectile.cs - for ranged enemy so not used
 ============================================================
 interface IProjectile:
   Variables:
@@ -445,7 +445,7 @@ interface IProjectile:
     +OnHit : Action<GameObject>
 
 
-File: Enemy/EnemyTypes/RangedEnemy/RangedEnemy.cs
+File: Enemy/EnemyTypes/RangedEnemy/RangedEnemy.cs - not found in game so removed
 ============================================================
 class RangedEnemy:
   Variables:
@@ -465,7 +465,7 @@ class RangedEnemy:
     -AttackSequence()
 
 
-File: Enemy/EnemyTypes/RangedEnemy/RangedEnemyProjectile.cs
+File: Enemy/EnemyTypes/RangedEnemy/RangedEnemyProjectile.cs - Removed
 ============================================================
 class RangedEnemyProjectile:
   Variables:
@@ -481,7 +481,7 @@ class RangedEnemyProjectile:
     -Update()
 
 
-File: Enemy/EnemyTypes/SwarmEnemy/SwarmEnemySpawner.cs
+File: Enemy/EnemyTypes/SwarmEnemy/SwarmEnemySpawner.cs v
 ============================================================
 class SwarmEnemySpawner:
   Variables:
@@ -493,7 +493,7 @@ class SwarmEnemySpawner:
     -SpawnEnemy()
 
 
-File: Enemy/EnemyTypes/Boss/BossEnemy.cs
+File: Enemy/EnemyTypes/Boss/BossEnemy.cs v
 ============================================================
 class BossEnemy:
   Variables:
@@ -523,7 +523,7 @@ class CustomBossEnemy:
     -Start()
 
 
-File: Enemy/EnemyTypes/BasicEnemy/BasicEnemy.cs
+File: Enemy/EnemyTypes/BasicEnemy/BasicEnemy.cs v
 ============================================================
 class BasicEnemy:
   Variables:
@@ -587,7 +587,7 @@ File: Enemy/EnemyTypes/PracticeTarget/PracticeTarget.cs
 class PracticeTarget:
 
 
-File: FightCoordinator/FightCoordinator.cs
+File: FightCoordinator/FightCoordinator.cs v
 ============================================================
 class FightCoordinator:
   Variables:
@@ -615,7 +615,7 @@ class FightData:
     +enemies : List<GameObject>
 
 
-File: Communication/TestingReactUnity/ReactUnityCommunication.cs
+File: Communication/TestingReactUnity/ReactUnityCommunication.cs v
 ============================================================
 class CustomChoice:
   Variables:
@@ -657,7 +657,7 @@ class ReactUnityCommunication:
     +SendFinished()
 
 
-File: Communication/TestingReactUnity/Battle Scene/BattleReactHandler.cs
+File: Communication/TestingReactUnity/Battle Scene/BattleReactHandler.cs v
 ============================================================
 class BattleReactHandler:
   Variables:
@@ -671,7 +671,7 @@ class BattleReactHandler:
     -HandleFinishDead()
 
 
-File: Communication/TestingReactUnity/Level Scene/LevelSelectionReactHandler.cs
+File: Communication/TestingReactUnity/Level Scene/LevelSelectionReactHandler.cs v
 ============================================================
 class LevelSelectionReactHandler:
   Functions:
@@ -689,7 +689,7 @@ class AOEVisualEffect:
     -AnimateExplosion()
 
 
-File: QuestionGeneration/QuestionGenerator.cs
+File: QuestionGeneration/QuestionGenerator.cs v
 ============================================================
 class QuestionGenerator:
   Variables:
@@ -725,7 +725,7 @@ class QuestionInfo:
     +question : MultipleChoiceQuestion
 
 
-File: QuestionGeneration/QuestionStage.cs
+File: QuestionGeneration/QuestionStage.cs v
 ============================================================
 class QuestionStage:
   Variables:
@@ -735,7 +735,7 @@ class QuestionStage:
     +GenerateQuestion()
 
 
-File: QuestionGeneration/Stages/AdditionStage.cs
+File: QuestionGeneration/Stages/AdditionStage.cs v
 ============================================================
 class AdditionStage:
   Variables:
@@ -757,7 +757,7 @@ struct AdditionLevel:
     +AdditionLevel()
 
 
-File: QuestionGeneration/Stages/CustomStage.cs
+File: QuestionGeneration/Stages/CustomStage.cs v
 ============================================================
 class CustomStage:
   Functions:
@@ -765,8 +765,8 @@ class CustomStage:
     +GenerateQuestion()
 
 
-File: QuestionGeneration/Stages/DivisionStage.cs
-============================================================
+File: QuestionGeneration/Stages/DivisionStage.cs v
+=========================================================== v=
 class DivisionStage:
   Variables:
     -Levels : DivisionLevel
@@ -784,7 +784,7 @@ struct DivisionLevel:
     +DivisionLevel()
 
 
-File: QuestionGeneration/Stages/FractionAdditionStage.cs
+File: QuestionGeneration/Stages/FractionAdditionStage.cs v
 ============================================================
 class FractionAdditionStage:
   Variables:
@@ -804,8 +804,8 @@ struct FractionLevel:
     +FractionLevel()
 
 
-File: QuestionGeneration/Stages/FractionMultilpicationStage.cs
-============================================================
+File: QuestionGeneration/Stages/FractionMultilpicationStage.cs v
+============================================================ 
 class FractionMultilpicationStage:
   Variables:
     -Levels : FractionMultiplicationLevel
@@ -823,7 +823,7 @@ struct FractionMultiplicationLevel:
     +FractionMultiplicationLevel()
 
 
-File: QuestionGeneration/Stages/FractionSubtractionStage.cs
+File: QuestionGeneration/Stages/FractionSubtractionStage.cs v
 ============================================================
 class FractionSubtractionStage:
   Variables:
@@ -843,7 +843,7 @@ struct FractionLevel:
     +FractionLevel()
 
 
-File: QuestionGeneration/Stages/MultiplicationStage.cs
+File: QuestionGeneration/Stages/MultiplicationStage.cs v
 ============================================================
 class MultiplicationStage:
   Variables:
@@ -862,7 +862,7 @@ struct MultiplicationLevel:
     +MultiplicationLevel()
 
 
-File: QuestionGeneration/Stages/SubtractionStage.cs
+File: QuestionGeneration/Stages/SubtractionStage.cs v
 ============================================================
 class SubtractionStage:
   Variables:
@@ -892,7 +892,7 @@ class ParentCenteringTool:
     +ValidateCenterParentBetweenChildren()
 
 
-File: Player/ProjectileMapping/ProjectileMapping.cs
+File: Player/ProjectileMapping/ProjectileMapping.cs v
 ============================================================
 class ProjectileMapping:
   Variables:
@@ -909,7 +909,7 @@ struct Mapping:
     +projectilePrefab : PlayerProjectile
 
 
-File: Player/AnimationMapping/AnimationMapping.cs
+File: Player/AnimationMapping/AnimationMapping.cs v
 ============================================================
 class AnimationMapping:
   Variables:

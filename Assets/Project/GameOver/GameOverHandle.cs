@@ -22,7 +22,7 @@ public class GameOverHandle : Singleton<GameOverHandle>
 
     void OnEnable()
     {
-        // Using .Instance instead of .HasInstance ensures we find the FightCoordinator 
+        // Using .Instance instead of .HasInstance ensures we find the FightCoordinator
         // even if its Awake() hasn't run yet, as it will perform a search in the scene.
         FightCoordinator.Instance.OnFinish += HandleWin;
 

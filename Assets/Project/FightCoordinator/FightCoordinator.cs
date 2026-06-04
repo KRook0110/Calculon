@@ -83,13 +83,13 @@ public class FightCoordinator : Singleton<FightCoordinator>
         {
             projectilePrefab = ProjectileMapping.Instance.GetProjectilePrefab(stage.name);
         }
-        
+
         // Fallback to a default if the stage is null or mapping is missing
         if (projectilePrefab == null)
         {
             // Try "Default" or just any mapping if "Default" isn't found
             projectilePrefab = ProjectileMapping.Instance.GetProjectilePrefab("Default");
-            
+
             if (projectilePrefab == null)
             {
                 Debug.LogWarning("FightCoordinator: No projectile mapping found for stage or 'Default'. Player cannot attack.");
