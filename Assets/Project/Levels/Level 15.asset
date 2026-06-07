@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44eb0650436f74db994f9b3b0026662b, type: 3}
-  m_Name: Level 6
+  m_Name: Level 15
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  levelName: Level 6
-  nextLevels:
-  - {fileID: 11400000, guid: a2ef744cb410242b38f82b1e7643091d, type: 2}
+  levelName: Level 15
+  nextLevels: []
   unlockQuestionTypes:
   - MultiplicationStage
   hasTutorial: 0
   resetLevelSelectionToDefault: 0
   enemies:
-  - {fileID: 6765464637440491061, guid: 0b8a8a8696328417fb6d972904ab1376, type: 3}
-  - {fileID: 4247643963268817922, guid: 838480d910a2f43e792fc9ce94d6a0f6, type: 3}
+  - {fileID: 1156020185170731152, guid: 3fcdd31e92144479e8f8b696347206f6, type: 3}

@@ -10,14 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44eb0650436f74db994f9b3b0026662b, type: 3}
-  m_Name: Level 1
+  m_Name: Level 13
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  levelName: Level 1
+  levelName: Level 13
   nextLevels:
-  - {fileID: 11400000, guid: 42721cfb36d8c4f09bc84af87a6415b7, type: 2}
+  - {fileID: 11400000, guid: cdbd49753fae94b6aaffad2f4b91d283, type: 2}
   unlockQuestionTypes:
-  - AdditionStage
+  - FractionMultiplicationStage
   hasTutorial: 0
   resetLevelSelectionToDefault: 0
   enemies:
+  - {fileID: 2023191207417578406, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+  - {fileID: 2023191207417578406, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+  - {fileID: 2023191207417578406, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+  - {fileID: 2023191207417578406, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
   - {fileID: 2023191207417578406, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}

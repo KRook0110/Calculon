@@ -14,8 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
   levelName: Level 11
   nextLevels:
-  - {fileID: 11400000, guid: 2e794ff320a194198bf46f795d02f7d0, type: 2}
+  - {fileID: 11400000, guid: 5e9f5847f7b4d4683849b8d60abdd3fb, type: 2}
   unlockQuestionTypes:
-  - MultiplicationStage
+  - FractionAdditionStage
+  hasTutorial: 0
+  resetLevelSelectionToDefault: 0
   enemies:
+  - {fileID: 2023191207417578406, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+  - {fileID: 2023191207417578406, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
   - {fileID: 2023191207417578406, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}

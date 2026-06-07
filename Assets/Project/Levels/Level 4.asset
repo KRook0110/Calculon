@@ -10,11 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44eb0650436f74db994f9b3b0026662b, type: 3}
-  m_Name: Level 16
+  m_Name: Level 4
   m_EditorClassIdentifier: Assembly-CSharp::LevelData
-  levelName: Level 16
-  nextLevels: []
+  levelName: Level 4
+  nextLevels:
+  - {fileID: 11400000, guid: 4044ed830a07d48f0a0fa4a09971ccb4, type: 2}
   unlockQuestionTypes:
   - SubtractionStage
+  hasTutorial: 0
+  resetLevelSelectionToDefault: 0
   enemies:
   - {fileID: 2023191207417578406, guid: ed3fe9a58ba664288963d9d0d03fcfec, type: 3}
+  - {fileID: 6765464637440491061, guid: 0b8a8a8696328417fb6d972904ab1376, type: 3}
