@@ -59,5 +59,8 @@ TagManager:
   - name: Projectile Effects
     uniqueID: 600260351
     locked: 0
+  - name: Tutorial
+    uniqueID: 846004139
+    locked: 0
   m_RenderingLayers:
   - Default
