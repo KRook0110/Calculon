@@ -321,8 +321,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BossEnemy
   player: {fileID: 0}
   playerTag: Player
-  maxHealth: 100
-  health: 100
+  maxHealth: 80
+  health: 80
   _damage: 30
   _speed: 0.3
   _attackCooldown: 2

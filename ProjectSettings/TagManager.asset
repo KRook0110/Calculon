@@ -62,5 +62,8 @@ TagManager:
   - name: Tutorial
     uniqueID: 846004139
     locked: 0
+  - name: UI
+    uniqueID: 2535009279
+    locked: 0
   m_RenderingLayers:
   - Default

@@ -4247,7 +4247,7 @@ PrefabInstance:
     - target: {fileID: 9030368629144391435, guid: ce7e893a3cc1f42e0846ad02f8b2a580,
         type: 3}
       propertyPath: eloGain
-      value: 0
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9030368629144391435, guid: ce7e893a3cc1f42e0846ad02f8b2a580,
         type: 3}

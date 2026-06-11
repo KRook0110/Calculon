@@ -1,0 +1,111 @@
+Name=Level 1
+Next=Level 2
+UnlockQuestion=AdditionStage
+HasTutorial=False
+Reset=False
+Enemies=BasicEnemy
+
+Name=Level 2
+Next=Level 3
+UnlockQuestion=AdditionStage
+HasTutorial=False
+Reset=False
+Enemies=TankyEnemy
+
+Name=Level 3
+Next=Level 4
+UnlockQuestion=SubtractionStage
+HasTutorial=False
+Reset=False
+Enemies=BasicEnemy, BasicEnemy
+
+Name=Level 4
+Next=Level 5
+UnlockQuestion=SubtractionStage
+HasTutorial=False
+Reset=False
+Enemies=BasicEnemy, TankyEnemy
+
+Name=Level 5
+Next=Level 6
+UnlockQuestion=SubtractionStage
+HasTutorial=False
+Reset=False
+Enemies=Boss Enemy Level 5
+
+Name=Level 6
+Next=Level 7
+UnlockQuestion=MultiplicationStage
+HasTutorial=False
+Reset=False
+Enemies=TankyEnemy, SwarmSpawnerEnemy
+
+Name=Level 7
+Next=Level 8
+UnlockQuestion=
+HasTutorial=False
+Reset=False
+Enemies=BasicEnemy, SwarmSpawnerEnemy, SwarmSpawnerEnemy
+
+Name=Level 8
+Next=Level 9
+UnlockQuestion=DivisionStage
+HasTutorial=False
+Reset=False
+Enemies=SwarmSpawnerEnemy, SwarmSpawnerEnemy, SwarmSpawnerEnemy
+
+Name=Level 9
+Next=Level 10
+UnlockQuestion=
+HasTutorial=False
+Reset=False
+Enemies=TankyEnemy, BasicEnemy, SwarmSpawnerEnemy, SwarmSpawnerEnemy
+
+Name=Level 10
+Next=Level 11
+UnlockQuestion=
+HasTutorial=False
+Reset=False
+Enemies=Boss Enemy
+
+Name=Level 11
+Next=Level 12
+UnlockQuestion=FractionAdditionStage
+HasTutorial=False
+Reset=False
+Enemies=BasicEnemy, BasicEnemy, BasicEnemy
+
+Name=Level 12
+Next=Level 13
+UnlockQuestion=FractionSubtractionStage
+HasTutorial=False
+Reset=False
+Enemies=SwarmSpawnerEnemy, BasicEnemy, TankyEnemy, TankyEnemy
+
+Name=Level 13
+Next=Level 14
+UnlockQuestion=FractionMultiplicationStage
+HasTutorial=False
+Reset=False
+Enemies=BasicEnemy, BasicEnemy, BasicEnemy, BasicEnemy, BasicEnemy
+
+Name=Level 14
+Next=Level 15
+UnlockQuestion=
+HasTutorial=False
+Reset=False
+Enemies=BasicEnemy, BasicEnemy, SwarmSpawnerEnemy, SwarmSpawnerEnemy, TankyEnemy, BasicEnemy
+
+Name=Level 15
+Next=
+UnlockQuestion=MultiplicationStage
+HasTutorial=False
+Reset=False
+Enemies=Boss Enemy Level 15
+
+Name=TestingLevel
+Next=
+UnlockQuestion=
+HasTutorial=False
+Reset=False
+Enemies=SwarmSpawnerEnemy, BasicEnemy
