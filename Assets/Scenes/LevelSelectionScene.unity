@@ -368,9 +368,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SaveDataViewer
   _savePath: /Users/shawnandrew/Library/Application Support/DefaultCompany/MagicNagger/savegame.json
   _data:
-    unlockedLevels: []
+    unlockedLevels:
+    - Level 1
+    - Level 2
+    - Level 3
+    - Level 4
+    - Level 5
+    - Level 6
     completedLevels: []
-    currentElo: 50
+    currentElo: 300
 --- !u!4 &122794572 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6020861187340040768, guid: 42b9fadde66ec4271bffa0c5bd2db22a,
@@ -1533,7 +1539,7 @@ PrefabInstance:
     - target: {fileID: 258313321015423431, guid: 6b7d569c94c5a4c65aa27d4fabd4d718,
         type: 3}
       propertyPath: m_Name
-      value: Level 7 Platform
+      value: Level 10 Platform
       objectReference: {fileID: 0}
     - target: {fileID: 260585391205050731, guid: 6b7d569c94c5a4c65aa27d4fabd4d718,
         type: 3}
@@ -1589,7 +1595,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _level
       value: 
-      objectReference: {fileID: 11400000, guid: a2ef744cb410242b38f82b1e7643091d,
+      objectReference: {fileID: 11400000, guid: 582c411baf9dc4c5698ab119583d02fd,
         type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1607,7 +1613,7 @@ PrefabInstance:
     - target: {fileID: 6018527402867041004, guid: 42b9fadde66ec4271bffa0c5bd2db22a,
         type: 3}
       propertyPath: m_Name
-      value: Level 8 Platform
+      value: Level 7 Platform
       objectReference: {fileID: 0}
     - target: {fileID: 6020861187340040768, guid: 42b9fadde66ec4271bffa0c5bd2db22a,
         type: 3}
@@ -1669,7 +1675,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _level
       value: 
-      objectReference: {fileID: 11400000, guid: d62a0478ad03c4b12a7acb8ab15cf5b5,
+      objectReference: {fileID: 11400000, guid: a2ef744cb410242b38f82b1e7643091d,
         type: 2}
     - target: {fileID: 7936702323363353856, guid: 42b9fadde66ec4271bffa0c5bd2db22a,
         type: 3}
@@ -2116,7 +2122,7 @@ PrefabInstance:
     - target: {fileID: 6018527402867041004, guid: 42b9fadde66ec4271bffa0c5bd2db22a,
         type: 3}
       propertyPath: m_Name
-      value: Level 10 Platform
+      value: Level 9 Platform
       objectReference: {fileID: 0}
     - target: {fileID: 6020861187340040768, guid: 42b9fadde66ec4271bffa0c5bd2db22a,
         type: 3}
@@ -2178,7 +2184,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _level
       value: 
-      objectReference: {fileID: 11400000, guid: 582c411baf9dc4c5698ab119583d02fd,
+      objectReference: {fileID: 11400000, guid: 0598c6adcb266412d9bae759a443851e,
         type: 2}
     - target: {fileID: 7936702323363353856, guid: 42b9fadde66ec4271bffa0c5bd2db22a,
         type: 3}
@@ -3578,10 +3584,10 @@ Transform:
   - {fileID: 1228850628}
   - {fileID: 753477637}
   - {fileID: 1084384666}
-  - {fileID: 134491908}
   - {fileID: 611605954}
   - {fileID: 694301160}
   - {fileID: 771358259}
+  - {fileID: 134491908}
   - {fileID: 2053872631}
   - {fileID: 996817646}
   - {fileID: 2106709836}
@@ -4017,7 +4023,7 @@ PrefabInstance:
     - target: {fileID: 6018527402867041004, guid: 42b9fadde66ec4271bffa0c5bd2db22a,
         type: 3}
       propertyPath: m_Name
-      value: Level 9 Platform
+      value: Level 8 Platform
       objectReference: {fileID: 0}
     - target: {fileID: 6020861187340040768, guid: 42b9fadde66ec4271bffa0c5bd2db22a,
         type: 3}
@@ -4079,7 +4085,7 @@ PrefabInstance:
         type: 3}
       propertyPath: _level
       value: 
-      objectReference: {fileID: 11400000, guid: 0598c6adcb266412d9bae759a443851e,
+      objectReference: {fileID: 11400000, guid: d62a0478ad03c4b12a7acb8ab15cf5b5,
         type: 2}
     - target: {fileID: 7936702323363353856, guid: 42b9fadde66ec4271bffa0c5bd2db22a,
         type: 3}
